@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6746086cf0cb42098f215c7051dcddf, type: 3}
+  m_Name: who am I
+  m_EditorClassIdentifier: 
+  lines:
+  - text: You are you and I am me, but what am I? Am I what I think I am or am I
+      what the world views me as? Can the world impose upon me it's views, or can
+      I be who I believe I am?
+  question: {fileID: 0}
+  nextConversation: {fileID: 11400000, guid: 860eec9845bcb4dc494862d0f3f73bb5, type: 2}

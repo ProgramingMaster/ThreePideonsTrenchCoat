@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0afcc967b763a4be9abbe223b606b903, type: 3}
+  m_Name: Flying
+  m_EditorClassIdentifier: 
+  text: 
+  choices:
+  - text: Can't argue with that.
+    conversation: {fileID: 11400000, guid: 33941139e65784bd5b7c1493916518e1, type: 2}
+  - text: But your just tied to a balloon!
+    conversation: {fileID: 11400000, guid: 55b21d248a1d540d6be0c4f0e380f80d, type: 2}

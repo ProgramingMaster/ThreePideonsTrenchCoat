@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0afcc967b763a4be9abbe223b606b903, type: 3}
+  m_Name: knowany
+  m_EditorClassIdentifier: 
+  text: 
+  choices:
+  - text: YOUR not a BIRD!
+    conversation: {fileID: 11400000, guid: c5296a62a309e4c93b7800b5687890f9, type: 2}
+  - text: We don't need humans. Let's go rob a bakery!
+    conversation: {fileID: 11400000, guid: a283ab2ae3741401bb3d706f67364343, type: 2}
+  - text: Yes, follow me.
+    conversation: {fileID: 0}
+  - text: No
+    conversation: {fileID: 0}
