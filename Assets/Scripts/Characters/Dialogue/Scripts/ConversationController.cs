@@ -60,14 +60,15 @@ public class ConversationController : MonoBehaviour
     void Start()
     {
         textDisplay.text = "";
-        AdvanceLine();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(textDisplay.text == conversation.lines[activeLineIndex-1].text) {
-            continueButton.SetActive(true);
+        if (conversation != null && conversationStarted) {
+            if(textDisplay.text == conversation.lines[activeLineIndex-1].text) {
+                continueButton.SetActive(true);
+            }
         }
     }
 

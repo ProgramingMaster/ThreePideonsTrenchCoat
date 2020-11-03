@@ -7,7 +7,7 @@ public class QuestionController : MonoBehaviour
 {
     public Question question;
     public Text questionText;
-    public Button choiceButton;
+    public Text choiceButton;
 
     private List<ChoiceController> choiceControllers = new List<ChoiceController>();
 

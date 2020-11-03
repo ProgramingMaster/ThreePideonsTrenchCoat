@@ -10,9 +10,9 @@ public class ChoiceController : MonoBehaviour
     public Choice choice;
     public ConversationChangeEvent conversationChangeEvent;
 
-    public static ChoiceController AddChoiceButton(Button choiceButtonTemplate, Choice choice, int index) {
+    public static ChoiceController AddChoiceButton(Text choiceButtonTemplate, Choice choice, int index) {
         int buttonSpacing = -44;
-        Button button = Instantiate(choiceButtonTemplate);
+        Text button = Instantiate(choiceButtonTemplate);
 
         button.transform.SetParent(choiceButtonTemplate.transform.parent);
         button.transform.localScale = Vector3.one;
@@ -31,7 +31,7 @@ public class ChoiceController : MonoBehaviour
         if (conversationChangeEvent == null)
             conversationChangeEvent = new ConversationChangeEvent();
 
-        GetComponent<Button>().GetComponentInChildren<Text>().text = choice.text;
+        GetComponent<Text>().text = choice.text;
     }
 
     public void MakeChoice() {
