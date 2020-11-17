@@ -4,21 +4,26 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public string name = "Caspian";
-
-    public void SavePlayer ()
-    {
-        SaveSystem.Save(this);
+    //public GameData gamedata;
+    void Start() {
+        //Debug.Log(GameData.conditions);
     }
 
-    public void LoadPlayer () {
-        SaveData data = SaveSystem.LoadData();
+    // public void SavePlayer ()
+    // {
+    //     Debug.Log("Save");
+    //     SaveSystem.Save(this);
+    // }
 
-        name = data.name;
+    // public void LoadPlayer () {
+    //     Debug.Log("Load");
+    //     SaveData data = SaveSystem.LoadData();
 
-        Vector2 position;
-        position.x = data.position[0];
-        position.y = data.position[1];
-        transform.position = position;
-    }
+    //     name = data.name;
+
+    //     Vector2 position;
+    //     position.x = data.position[0];
+    //     position.y = data.position[1];
+    //     transform.position = position;
+    // }
 }

@@ -9,7 +9,7 @@ public class QuestionEvent : UnityEvent<Question> {}
 
 public class ConversationController : MonoBehaviour
 {
-    public Conversation conversation;
+    private Conversation conversation;
     public QuestionEvent questionEvent;
     public QuestionController questionController;
     public TextMeshProUGUI textDisplay;
@@ -25,15 +25,26 @@ public class ConversationController : MonoBehaviour
         AdvanceLine();
     }
 
+    public void StartNewConversation(Conversation NewConversation) {
+        conversation = NewConversation;
+        AdvanceLine();
+    }
+
     public void AdvanceLine() {
         textDisplay.text = "";
-        if (conversation == null) return;
+        if (conversation == null) {
+            EndConversation();
+        }
         if (!conversationStarted) Initialize();
 
-        if (activeLineIndex < conversation.lines.Length)
+        if (activeLineIndex < conversation.lines.Length) {
+            Debug.Log("Display");
             DisplayLine();
-        else
+        }
+        else {
+            Debug.Log("Advance");
             AdvanceConversation();
+        }
     }
 
     private void Initialize() {

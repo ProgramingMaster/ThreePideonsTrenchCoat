@@ -6,6 +6,9 @@ using UnityEngine;
 public class InputManager : MonoBehaviour {
 	public bool flight = false;
 	public bool FacingRight = true;
+
+	public GameObject trenchcoat;
+	public GameObject bird;
     
     public TrechcoatController controller;
 	public ControlledFlight flyController;
@@ -23,6 +26,8 @@ public class InputManager : MonoBehaviour {
 	void Start () {
     	rb = GetComponent<Rigidbody2D>();
 		active = !flight;
+		trenchcoat.SetActive(false);
+		bird.SetActive(false);
 	}
 
     // Update is called once per frame
@@ -63,8 +68,12 @@ public class InputManager : MonoBehaviour {
 			// }
 		}
 		if (flight) {
+			trenchcoat.SetActive(false);
+			bird.SetActive(true);
 			rb.gravityScale = 0;
 		} else {
+			bird.SetActive(false);
+			trenchcoat.SetActive(true);
 			rb.gravityScale = 1;
 		}
 
