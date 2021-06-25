@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6746086cf0cb42098f215c7051dcddf, type: 3}
+  m_Name: IdleAgain
+  m_EditorClassIdentifier: 
+  lines:
+  - text: Now I am back to Idling.
+  - text: Anything else you need me to test?
+  question: {fileID: 11400000, guid: 72da8687f637d4276999a356478d1e59, type: 2}
+  nextConversation: {fileID: 0}

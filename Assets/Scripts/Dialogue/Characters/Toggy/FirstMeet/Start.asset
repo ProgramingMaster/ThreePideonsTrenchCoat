@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Start
   m_EditorClassIdentifier: 
   lines:
-  - text: Was up dude! Isn't this view great?
-  question: {fileID: 0}
+  - text: Wassup dude!
+  - text: Anything you need?
+  question: {fileID: 11400000, guid: 09fb7920ce29f4b4cbbca1edd6bc56c3, type: 2}
   nextConversation: {fileID: 0}

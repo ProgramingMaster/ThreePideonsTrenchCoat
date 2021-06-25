@@ -16,9 +16,25 @@ MonoBehaviour:
   choices:
   - text: YOUR not a BIRD!
     conversation: {fileID: 11400000, guid: c5296a62a309e4c93b7800b5687890f9, type: 2}
+    subSchedule: {fileID: 0}
+    scheduleEvent:
+      m_PersistentCalls:
+        m_Calls: []
   - text: We don't need humans. Let's go rob a bakery!
     conversation: {fileID: 11400000, guid: a283ab2ae3741401bb3d706f67364343, type: 2}
+    subSchedule: {fileID: 0}
+    scheduleEvent:
+      m_PersistentCalls:
+        m_Calls: []
   - text: Yes, follow me.
     conversation: {fileID: 11400000, guid: 2a273c10d22a7450a90da57422855f60, type: 2}
+    subSchedule: {fileID: 0}
+    scheduleEvent:
+      m_PersistentCalls:
+        m_Calls: []
   - text: No
     conversation: {fileID: 11400000, guid: b52ac591dd15e4ce5901dbd7c3d19d8e, type: 2}
+    subSchedule: {fileID: 0}
+    scheduleEvent:
+      m_PersistentCalls:
+        m_Calls: []

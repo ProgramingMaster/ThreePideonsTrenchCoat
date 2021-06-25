@@ -10,7 +10,7 @@ public class TalkButton : MonoBehaviour
     public GameObject TalkButtonPrefab;
     public float talkButtonOffset;
     public ConversationController conversationController;
-    public Conversation NewConversation;
+    private Conversation NewConversation;
 
     private GameObject talkButton;
     private Button button;
@@ -25,25 +25,30 @@ public class TalkButton : MonoBehaviour
     }
 
     private void OnTriggerEnter2D (Collider2D collider) {
-        // Create talk popup if not already created
-        if (!created) {
-            Vector2 position = new Vector2(transform.position.x, transform.position.y+talkButtonOffset);
-            talkButton = Instantiate(TalkButtonPrefab, position, Quaternion.identity, transform);
-            anim = talkButton.GetComponentInChildren(typeof(Animator)) as Animator;
-            button = talkButton.GetComponentInChildren(typeof(Button)) as Button;
-            created = true;
-            
-            button.onClick.AddListener(ButtonClicked);
-        } else { // show it
-            started = true;
-            talkButton.SetActive(true);
-            //StartCoroutine("animStarted");
+        if (collider.tag == "Player") {
+            // Create talk popup if not already created
+            NewConversation = GetComponent<ScheduleManager>().conversation;
+            Debug.Log("Talk: " + NewConversation);
+            if (!created) {
+                Vector2 position = new Vector2(transform.position.x, transform.position.y+talkButtonOffset);
+                talkButton = Instantiate(TalkButtonPrefab, position, Quaternion.identity, transform);
+                anim = talkButton.GetComponentInChildren(typeof(Animator)) as Animator;
+                button = talkButton.GetComponentInChildren(typeof(Button)) as Button;
+                created = true;
+                
+                button.onClick.AddListener(ButtonClicked);
+            } else { // show it
+                started = true;
+                talkButton.SetActive(true);
+                //StartCoroutine("animStarted");
+            }
+            //StartCoroutine("NewPopup");
         }
-        //StartCoroutine("NewPopup");
     }
 
     private void ButtonClicked() {
         talkButton.SetActive(false);
+        Debug.Log("Converstion (Clicked) = " + NewConversation);
         conversationController.StartNewConversation(NewConversation);
     }
 

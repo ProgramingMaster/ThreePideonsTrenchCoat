@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
@@ -12,12 +13,13 @@ public class ConversationController : MonoBehaviour
     private Conversation conversation;
     public QuestionEvent questionEvent;
     public QuestionController questionController;
-    public TextMeshProUGUI textDisplay;
+    public TMP_Text textDisplay;
     public float typingSpeed;
     public GameObject continueButton;
 
     private int activeLineIndex = 0;
     private bool conversationStarted = false;
+    private Image dialoguebox;
 
     public void ChangeConversation(Conversation nextConversation) {
         conversationStarted = false;
@@ -32,17 +34,18 @@ public class ConversationController : MonoBehaviour
 
     public void AdvanceLine() {
         textDisplay.text = "";
+        dialoguebox.gameObject.SetActive(true);
         if (conversation == null) {
             EndConversation();
         }
         if (!conversationStarted) Initialize();
 
+        // Debug.Log(conversation);
+        // Debug.Log(activeLineIndex);
         if (activeLineIndex < conversation.lines.Length) {
-            Debug.Log("Display");
             DisplayLine();
         }
         else {
-            Debug.Log("Advance");
             AdvanceConversation();
         }
     }
@@ -51,6 +54,8 @@ public class ConversationController : MonoBehaviour
         conversationStarted = true;
         activeLineIndex = 0;
         textDisplay.text = "";
+
+        dialoguebox.gameObject.SetActive(true);
     }
 
     private void EndConversation() {
@@ -58,6 +63,7 @@ public class ConversationController : MonoBehaviour
         conversationStarted = false;
         continueButton.SetActive(false);
         textDisplay.text = "";
+        dialoguebox.gameObject.SetActive(false);
     }
 
     private void DisplayLine() {
@@ -71,6 +77,8 @@ public class ConversationController : MonoBehaviour
     void Start()
     {
         textDisplay.text = "";
+        dialoguebox = gameObject.GetComponent(typeof(Image)) as Image;
+        dialoguebox.gameObject.SetActive(false);
     }
 
     // Update is called once per frame

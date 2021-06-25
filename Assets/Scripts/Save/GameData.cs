@@ -5,7 +5,7 @@ using UnityEngine;
 public static class GameData
 {
     public static Dictionary<string, bool> conditions = new Dictionary<string, bool>() {
-        {"MetLongBird", true},
+        {"MetLongBird", false},
         {"MetToggy", false}
     };
     

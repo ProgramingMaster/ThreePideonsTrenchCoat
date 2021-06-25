@@ -4,9 +4,22 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    float health = 100;
+
     //public GameData gamedata;
     void Start() {
         //Debug.Log(GameData.conditions);
+    }
+
+    public void TakeDamage(float damage) {
+        health -= damage;
+        if (health <= 0) {
+            Die();
+        }
+    }
+
+    void Die() {
+        Debug.Log("You Died");
     }
 
     // public void SavePlayer ()
@@ -26,4 +39,6 @@ public class Player : MonoBehaviour
     //     position.y = data.position[1];
     //     transform.position = position;
     // }
+
+    
 }

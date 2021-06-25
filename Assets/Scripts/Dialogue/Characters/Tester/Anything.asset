@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0afcc967b763a4be9abbe223b606b903, type: 3}
+  m_Name: Anything
+  m_EditorClassIdentifier: 
+  text: Do you need me to do any more tests?
+  choices:
+  - text: Yes
+    conversation: {fileID: 11400000, guid: 5de0ebd9a1c544943bf06fc068791e47, type: 2}
+    subSchedule: {fileID: 11400000, guid: e303d4309c29e422bacfa7e9b826ab15, type: 2}
+    characterToChange: Tester
+  - text: No
+    conversation: {fileID: 0}
+    subSchedule: {fileID: 0}
+    characterToChange: 

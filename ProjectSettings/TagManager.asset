@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - ledge
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -44,4 +45,10 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 99803201
+    locked: 0
+  - name: Foreground
+    uniqueID: 2019798589
     locked: 0
