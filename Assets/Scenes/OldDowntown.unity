@@ -534,7 +534,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &205422108
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3163,7 +3163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   question: {fileID: 0}
   questionText: {fileID: 0}
-  choiceButton: {fileID: 205422111}
+  choiceButton: {fileID: 2127711071}
 --- !u!4 &1258845857
 Transform:
   m_ObjectHideFlags: 0
@@ -5276,7 +5276,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2127711068
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5418,7 +5418,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c1d9ce0165e464287b2933a1f3374567, type: 3}
+    m_Font: {fileID: 12800000, guid: 1b3241399470a4841aedd564d8c387dc, type: 2}
     m_FontSize: 16
     m_FontStyle: 0
     m_BestFit: 0

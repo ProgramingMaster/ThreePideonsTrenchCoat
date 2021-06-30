@@ -11,16 +11,16 @@ public class ChoiceController : MonoBehaviour
     public Choice choice;
     public ConversationChangeEvent conversationChangeEvent;
 
-    public static ChoiceController AddChoiceButton(TMP_Text choiceButtonTemplate, Choice choice, int index) {
+    public static ChoiceController AddChoiceButton(Text choiceButtonTemplate, Choice choice, int index) {
         Debug.Log(choiceButtonTemplate);
         int buttonSpacing = -44;
-        TMP_Text button = Instantiate(choiceButtonTemplate);
+        Text button = Instantiate(choiceButtonTemplate);
         Debug.Log(button);
         Debug.Log("Choice = " + choice);
 
         button.transform.SetParent(choiceButtonTemplate.transform.parent);
         button.transform.localScale = Vector3.one;
-        button.transform.localPosition = new Vector3(0, index * buttonSpacing, 0);
+        button.transform.localPosition = new Vector3(0, index * buttonSpacing, 0); 
         button.name = "Choice " + (index + 1);
         button.gameObject.SetActive(true);
 
@@ -35,7 +35,7 @@ public class ChoiceController : MonoBehaviour
         if (conversationChangeEvent == null)
             conversationChangeEvent = new ConversationChangeEvent();
 
-        GetComponent<TMP_Text>().text = choice.text;
+        GetComponent<Text>().text = choice.text;
     }
 
     public void MakeChoice() {

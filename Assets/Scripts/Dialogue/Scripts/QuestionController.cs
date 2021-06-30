@@ -8,7 +8,7 @@ public class QuestionController : MonoBehaviour
 {
     public Question question;
     public TMP_Text questionText;
-    public TMP_Text choiceButton;
+    public Text choiceButton;
 
     private List<ChoiceController> choiceControllers = new List<ChoiceController>();
 
