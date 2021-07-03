@@ -71,7 +71,7 @@ public class ConversationController : MonoBehaviour
 
         StartCoroutine(Type(line));
         continueButton.SetActive(false);
-        activeLineIndex ++;        
+        activeLineIndex ++;
     }
     
     void Start()
@@ -99,8 +99,10 @@ public class ConversationController : MonoBehaviour
     }
 
     public void AdvanceConversation() {
-        if (conversation.question != null)
+        if (conversation.question != null) {
             questionEvent.Invoke(conversation.question);
+            EndConversation();
+        }
         else if (conversation.nextConversation != null)
             ChangeConversation(conversation.nextConversation);
         else

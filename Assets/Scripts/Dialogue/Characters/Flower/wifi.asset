@@ -21,7 +21,7 @@ MonoBehaviour:
     showConditions: []
     effectCondition: AgreedToGetPasswordForFlower
   - text: No.
-    conversation: {fileID: 0}
+    conversation: {fileID: 11400000, guid: 0133cc5dce61848ee923b52b42504940, type: 2}
     subSchedule: {fileID: 0}
     characterToChange: 
     showConditions: []

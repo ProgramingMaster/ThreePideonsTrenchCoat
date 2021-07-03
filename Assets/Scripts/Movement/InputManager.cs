@@ -4,14 +4,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class InputManager : MonoBehaviour {
-	public bool flight = false;
+	public bool BirdMode = false;
 	public bool FacingRight = true;
+	public bool walking = false;
 
 	public GameObject trenchcoat;
 	public GameObject bird;
+	public GameObject birdWalk;
     
     public TrechcoatController controller;
 	public ControlledFlight flyController;
+	public BirdWalk birdWalkController;
 	//public EnableLedges ledge;
 	Rigidbody2D rb;
 
@@ -25,7 +28,7 @@ public class InputManager : MonoBehaviour {
 		
 	void Start () {
     	rb = GetComponent<Rigidbody2D>();
-		active = !flight;
+		active = !BirdMode;
 		trenchcoat.SetActive(false);
 		bird.SetActive(false);
 	}
@@ -39,8 +42,8 @@ public class InputManager : MonoBehaviour {
         }
 
 		if (Input.GetButtonDown("Fly")){
-			flight = !flight;
-			active = !flight;
+			BirdMode = !BirdMode;
+			active = !BirdMode;
 			//ledge.toggle();
 			GameObject[] GOs = GameObject.FindGameObjectsWithTag("ledge");
 			// now all your game objects are in GOs,
@@ -53,7 +56,7 @@ public class InputManager : MonoBehaviour {
 			}
 		}
 
-		if (flight == false) {
+		if (BirdMode == false) {
 			if (Input.GetButtonDown("Jump"))
 			{
 				jump = true;
@@ -67,25 +70,43 @@ public class InputManager : MonoBehaviour {
 			// 	crouch = false;
 			// }
 		}
-		if (flight) {
+		if (walking) {
+			trenchcoat.SetActive(false);
+			bird.SetActive(false);
+			birdWalk.SetActive(true);
+			BirdMode = false;
+			rb.gravityScale = 1;
+		}
+		else if (BirdMode) {
 			trenchcoat.SetActive(false);
 			bird.SetActive(true);
+			birdWalk.SetActive(false);
 			rb.gravityScale = 0;
 		} else {
 			bird.SetActive(false);
 			trenchcoat.SetActive(true);
+			birdWalk.SetActive(false);
 			rb.gravityScale = 1;
 		}
 
     }
+
+	public void OnGround() {
+		if (BirdMode) {
+			walking = true;
+		}
+	}
         
     void FixedUpdate () {
         // Move our character
-		if (flight == false) {
+		if (walking) {
+			birdWalkController.Move(horizontalMove * Time.fixedDeltaTime);
+		}
+		if (BirdMode == false && walking == false) {
         	controller.Move(horizontalMove * Time.fixedDeltaTime, false, jump);
 		}
         jump = false;
-		if (flight) {
+		if (BirdMode) {
 			flyController.Move(horizontalMove * Time.fixedDeltaTime, verticalMove * Time.fixedDeltaTime);
 		}
     }

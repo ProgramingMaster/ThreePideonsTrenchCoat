@@ -30,8 +30,10 @@ public class TalkButton : MonoBehaviour
             NewConversation = GetComponent<ScheduleManager>().conversation;
             Debug.Log("Talk: " + NewConversation);
             if (!created) {
-                Vector2 position = new Vector2(transform.position.x, transform.position.y+talkButtonOffset);
-                talkButton = Instantiate(TalkButtonPrefab, position, Quaternion.identity, transform);
+                //Vector2 position = new Vector2(transform.position.x, transform.position.y+talkButtonOffset);
+                //talkButton = Instantiate(TalkButtonPrefab, position, Quaternion.identity, transform);
+                //talkButton = GameObject.GetComponentInChildren(typeof(GameObject)) as GameObject;
+                talkButton = gameObject.transform.GetChild(0).gameObject;
                 anim = talkButton.GetComponentInChildren(typeof(Animator)) as Animator;
                 button = talkButton.GetComponentInChildren(typeof(Button)) as Button;
                 created = true;
