@@ -4,12 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class InputManager : MonoBehaviour {
-	public bool BirdMode = false;
+	public int walkState; //1 = Trenchcoat, 2 = Bird Flying, 3 = Bird Walking
 	public bool FacingRight = true;
-	public bool walking = false;
 
 	public GameObject trenchcoat;
-	public GameObject bird;
+	public GameObject birdFly;
 	public GameObject birdWalk;
     
     public TrechcoatController controller;
@@ -28,9 +27,17 @@ public class InputManager : MonoBehaviour {
 		
 	void Start () {
     	rb = GetComponent<Rigidbody2D>();
-		active = !BirdMode;
-		trenchcoat.SetActive(false);
-		bird.SetActive(false);
+		if (walkState == 2)
+			active = false;
+		else
+			active = true;
+
+		if (walkState == 1)
+			ToTrenchcoat();
+		else if (walkState == 2)
+			ToBirdFly();
+		else
+			ToBirdWalk();
 	}
 
     // Update is called once per frame
@@ -42,8 +49,15 @@ public class InputManager : MonoBehaviour {
         }
 
 		if (Input.GetButtonDown("Fly")){
-			BirdMode = !BirdMode;
-			active = !BirdMode;
+			if (walkState == 2 || walkState == 3)
+				ToTrenchcoat();
+			else if (walkState == 1) 
+				ToBirdFly();
+
+			if (walkState == 2)
+				active = false;
+			else
+				active = true;
 			//ledge.toggle();
 			GameObject[] GOs = GameObject.FindGameObjectsWithTag("ledge");
 			// now all your game objects are in GOs,
@@ -56,7 +70,13 @@ public class InputManager : MonoBehaviour {
 			}
 		}
 
-		if (BirdMode == false) {
+		if (walkState == 3) {
+			if (Input.GetButtonDown("Jump")) {
+				ToBirdFly();
+			}
+		}
+
+		if (walkState == 1) {
 			if (Input.GetButtonDown("Jump"))
 			{
 				jump = true;
@@ -70,43 +90,48 @@ public class InputManager : MonoBehaviour {
 			// 	crouch = false;
 			// }
 		}
-		if (walking) {
-			trenchcoat.SetActive(false);
-			bird.SetActive(false);
-			birdWalk.SetActive(true);
-			BirdMode = false;
-			rb.gravityScale = 1;
-		}
-		else if (BirdMode) {
-			trenchcoat.SetActive(false);
-			bird.SetActive(true);
-			birdWalk.SetActive(false);
-			rb.gravityScale = 0;
-		} else {
-			bird.SetActive(false);
-			trenchcoat.SetActive(true);
-			birdWalk.SetActive(false);
-			rb.gravityScale = 1;
-		}
-
     }
 
+	private void ToBirdWalk() {
+		trenchcoat.SetActive(false);
+		birdFly.SetActive(false);
+		birdWalk.SetActive(true);
+		walkState = 3;
+		rb.gravityScale = 5;
+	}
+
+	private void ToBirdFly() {
+		trenchcoat.SetActive(false);
+		birdFly.SetActive(true);
+		birdWalk.SetActive(false);
+		walkState = 2;
+		rb.gravityScale = 0;
+	}
+
+	private void ToTrenchcoat() {
+		birdFly.SetActive(false);
+		trenchcoat.SetActive(true);
+		birdWalk.SetActive(false);
+		walkState = 1;
+		rb.gravityScale = 1;
+	}
+
 	public void OnGround() {
-		if (BirdMode) {
-			walking = true;
+		if (walkState == 2) {
+			ToBirdWalk();
 		}
 	}
-        
+  
     void FixedUpdate () {
         // Move our character
-		if (walking) {
+		if (walkState == 3) {
 			birdWalkController.Move(horizontalMove * Time.fixedDeltaTime);
 		}
-		if (BirdMode == false && walking == false) {
+		if (walkState == 1) {
         	controller.Move(horizontalMove * Time.fixedDeltaTime, false, jump);
 		}
-        jump = false;
-		if (BirdMode) {
+        jump = false; //What does this do?
+		if (walkState == 2) {
 			flyController.Move(horizontalMove * Time.fixedDeltaTime, verticalMove * Time.fixedDeltaTime);
 		}
     }

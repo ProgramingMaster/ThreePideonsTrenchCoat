@@ -21,6 +21,7 @@ public struct Choice {
     public string characterToChange;
     public showCondition[] showConditions;
     public string effectCondition;
+    public string[] makeFollowers;
 }
 
 [CreateAssetMenu(fileName = "New Question", menuName = "Question")]

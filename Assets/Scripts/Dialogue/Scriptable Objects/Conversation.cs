@@ -12,5 +12,6 @@ public class Conversation : ScriptableObject
 {
     public Line[] lines;
     public Question question;
+    public string name;
     public Conversation nextConversation;
 }

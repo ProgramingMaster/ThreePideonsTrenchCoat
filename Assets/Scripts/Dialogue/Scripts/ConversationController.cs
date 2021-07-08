@@ -14,6 +14,7 @@ public class ConversationController : MonoBehaviour
     public QuestionEvent questionEvent;
     public QuestionController questionController;
     public TMP_Text textDisplay;
+    public TMP_Text name;
     public float typingSpeed;
     public GameObject continueButton;
 
@@ -24,11 +25,13 @@ public class ConversationController : MonoBehaviour
     public void ChangeConversation(Conversation nextConversation) {
         conversationStarted = false;
         conversation = nextConversation;
+        name.text = conversation.name;
         AdvanceLine();
     }
 
     public void StartNewConversation(Conversation NewConversation) {
         conversation = NewConversation;
+        name.text = conversation.name;
         AdvanceLine();
     }
 
