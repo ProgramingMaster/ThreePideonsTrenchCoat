@@ -10,6 +10,7 @@ public class TalkButton : MonoBehaviour
     public GameObject TalkButtonPrefab;
     public float talkButtonOffset;
     public ConversationController conversationController;
+    public string followConditionName;
     private Conversation NewConversation;
 
     private GameObject talkButton;
@@ -18,14 +19,25 @@ public class TalkButton : MonoBehaviour
     
     bool created = false;
     bool started = false;
+    bool follower;
     // Start is called before the first frame update
     void Start()
     {
         //anim = button.GetComponent<Animator>();
     }
 
+    private bool checkIfFollower() {
+        if (followConditionName != "") {
+            if (GameManager.Instance.conditions[followConditionName] == true) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void OnTriggerEnter2D (Collider2D collider) {
-        if (collider.tag == "Player") {
+        follower = checkIfFollower();
+        if (collider.tag == "Player" && !follower) {
             // Create talk popup if not already created
             NewConversation = GetComponent<ScheduleManager>().conversation;
             Debug.Log("Talk: " + NewConversation);
@@ -65,7 +77,7 @@ public class TalkButton : MonoBehaviour
     // }
 
     private void OnTriggerExit2D (Collider2D collider) {
-        //if (!started)
+        if (!follower)
             StartCoroutine("popdown");
     }
 

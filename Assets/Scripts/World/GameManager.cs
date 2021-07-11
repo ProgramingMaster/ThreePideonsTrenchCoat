@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public Dictionary<string, bool> conditions = new Dictionary<string, bool> {
         {"AskedToggyForPassword", false},
         {"AgreedToGetPasswordForFlower", false},
+        {"WazuAndFluffAreFollowers", false}
     };
 
     private void Awake()

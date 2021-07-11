@@ -14,8 +14,10 @@ public class KnockBack : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D other) {
-        Vector2 newVel = new Vector2(knockBackDistance, rb.velocity.y);
-        rb.velocity = newVel;
+        if(other.gameObject.CompareTag("Player")) {
+            Vector2 newVel = new Vector2(knockBackDistance, rb.velocity.y);
+            rb.velocity = newVel;
+        }
     }
 
     // Update is called once per frame

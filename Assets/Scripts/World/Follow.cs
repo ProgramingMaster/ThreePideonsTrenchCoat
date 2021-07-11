@@ -8,20 +8,16 @@ public class Follow : MonoBehaviour
     bool isNearPlayer;
     public float speed;
     public GameObject player;
-    public bool following;
+    public string followConditionName;
     // Start is called before the first frame update
     void Start()
     {
     }
 
-    public void Following() {
-        following = true;
-    }
-
     // Update is called once per frame
     void Update()
     {
-        if (isNearPlayer == false && following == true) {
+        if (isNearPlayer == false && GameManager.Instance.conditions[followConditionName] == true) {
             //super easy, barely an inconvience
             float adjustedSpeed = speed + Math.Abs((player.transform.position.x - transform.position.x) + (player.transform.position.y - transform.position.y)) * Time.deltaTime;
             transform.position = Vector2.MoveTowards(transform.position, player.transform.position, adjustedSpeed);

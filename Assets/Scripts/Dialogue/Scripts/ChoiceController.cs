@@ -50,14 +50,8 @@ public class ChoiceController : MonoBehaviour
         if (choice.effectCondition != null) {
             GameManager.Instance.conditions[choice.effectCondition] = true;
         }
-        if (choice.makeFollowers != null) {
-            int i;
-            GameObject currentFollower;
-            for (i = 0; i < choice.makeFollowers.Length; i++) {
-                currentFollower = GameObject.Find("Characters/" + choice.makeFollowers[i]);
-                Follow follow = currentFollower.GetComponent(typeof(Follow)) as Follow;
-                follow.Following();
-            }
+        if (choice.makeFollower != null) {
+            GameManager.Instance.conditions[choice.makeFollower] = true;
         }
     }
 }

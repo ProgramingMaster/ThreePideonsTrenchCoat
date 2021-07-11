@@ -10,11 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6746086cf0cb42098f215c7051dcddf, type: 3}
-  m_Name: TheaterMeet
+  m_Name: Alright
   m_EditorClassIdentifier: 
   lines:
-  - text: Bonsier fine sir! I see you are also attempting to enter this fine establishment.
-  - text: Do you need any assistence?
-  question: {fileID: 11400000, guid: b546208523da943bf99adbae0ec2fb55, type: 2}
+  - text: Alright
+  question: {fileID: 0}
   name: Wazu
   nextConversation: {fileID: 0}

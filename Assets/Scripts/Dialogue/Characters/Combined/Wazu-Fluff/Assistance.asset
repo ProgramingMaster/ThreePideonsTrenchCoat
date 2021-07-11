@@ -15,11 +15,9 @@ MonoBehaviour:
   text: 
   choices:
   - text: Yes
-    conversation: {fileID: 0}
+    conversation: {fileID: 11400000, guid: ca083ef4b5aaf4504ad044f9514110e3, type: 2}
     subSchedule: {fileID: 0}
     characterToChange: 
     showConditions: []
     effectCondition: 
-    makeFollowers:
-    - Wazu
-    - Fluff
+    makeFollower: WazuAndFluffAreFollowers
