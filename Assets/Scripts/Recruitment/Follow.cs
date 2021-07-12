@@ -17,23 +17,23 @@ public class Follow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isNearPlayer == false && GameManager.Instance.conditions[followConditionName] == true) {
+        // if (isNearPlayer == false) {
             //super easy, barely an inconvience
             float adjustedSpeed = speed + Math.Abs((player.transform.position.x - transform.position.x) + (player.transform.position.y - transform.position.y)) * Time.deltaTime;
             transform.position = Vector2.MoveTowards(transform.position, player.transform.position, adjustedSpeed);
-        }
+        //}
     }
 
 
-    void OnTriggerEnter2D(Collider2D other) {
-        if(other.gameObject.CompareTag("Player")) {
-            isNearPlayer = true;
-        }
-    }
+    // void OnTriggerEnter2D(Collider2D other) {
+    //     if(other.gameObject.CompareTag("Player")) {
+    //         isNearPlayer = true;
+    //     }
+    // }
 
-    void OnTriggerExit2D(Collider2D other) {
-        if(other.gameObject.CompareTag("Player")) {
-            isNearPlayer = false;
-        }
-    }
+    // void OnTriggerExit2D(Collider2D other) {
+    //     if(other.gameObject.CompareTag("Player")) {
+    //         isNearPlayer = false;
+    //     }
+    // }
 }

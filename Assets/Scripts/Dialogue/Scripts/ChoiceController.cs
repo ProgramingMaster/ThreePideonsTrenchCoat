@@ -10,6 +10,9 @@ public class ChoiceController : MonoBehaviour
 {
     public Choice choice;
     public ConversationChangeEvent conversationChangeEvent;
+    public SummonFollowers Summon;
+    public GameObject higherSlot;
+    public GameObject lowerSlot;
 
     public static ChoiceController AddChoiceButton(Text choiceButtonTemplate, Choice choice, int index) {
         Debug.Log(choiceButtonTemplate);
@@ -50,8 +53,16 @@ public class ChoiceController : MonoBehaviour
         if (choice.effectCondition != null) {
             GameManager.Instance.conditions[choice.effectCondition] = true;
         }
-        if (choice.makeFollower != null) {
-            GameManager.Instance.conditions[choice.makeFollower] = true;
+        if (choice.makeFollowers != null) {
+            int i;
+            GameObject follower;
+            SpriteRenderer followerSprite;
+            for (i = 0; i < choice.makeFollowers.Length; i++) {
+                follower = GameObject.Find("Characters/" + choice.makeFollowers[i]);
+                followerSprite = follower.GetComponent(typeof(SpriteRenderer)) as SpriteRenderer;
+                GameManager.Instance.conditions[choice.makeFollowers[i] + "Follower"] = true;
+                Summon.Summon(choice.makeFollowers[i], followerSprite.sprite, higherSlot, lowerSlot, follower.transform.position);
+            }
         }
     }
 }

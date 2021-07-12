@@ -20,4 +20,6 @@ MonoBehaviour:
     characterToChange: 
     showConditions: []
     effectCondition: 
-    makeFollower: WazuAndFluffAreFollowers
+    makeFollowers:
+    - Wazu
+    - Fluff
