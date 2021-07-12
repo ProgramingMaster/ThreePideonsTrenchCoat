@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lines:
   - text: Bonsier fine sir! I see you are also attempting to enter this fine establishment.
-  - text: Do you need any assistence?
   question: {fileID: 11400000, guid: b546208523da943bf99adbae0ec2fb55, type: 2}
   name: Wazu
   nextConversation: {fileID: 0}

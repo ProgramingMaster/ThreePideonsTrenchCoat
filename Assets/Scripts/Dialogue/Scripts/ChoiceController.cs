@@ -16,7 +16,7 @@ public class ChoiceController : MonoBehaviour
 
     public static ChoiceController AddChoiceButton(Text choiceButtonTemplate, Choice choice, int index) {
         Debug.Log(choiceButtonTemplate);
-        int buttonSpacing = -44;
+        int buttonSpacing = -22;
         Text button = Instantiate(choiceButtonTemplate);
         Debug.Log(button);
         Debug.Log("Choice = " + choice);

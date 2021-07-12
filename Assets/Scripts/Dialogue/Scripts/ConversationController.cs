@@ -61,6 +61,14 @@ public class ConversationController : MonoBehaviour
         dialoguebox.gameObject.SetActive(true);
     }
 
+    private void ToQuestion() {
+        //conversation = null;
+        //conversationStarted = false;
+        continueButton.SetActive(false);
+        //textDisplay.text = "";
+        //dialoguebox.gameObject.SetActive(false);
+    }
+
     private void EndConversation() {
         conversation = null;
         conversationStarted = false;
@@ -104,7 +112,7 @@ public class ConversationController : MonoBehaviour
     public void AdvanceConversation() {
         if (conversation.question != null) {
             questionEvent.Invoke(conversation.question);
-            EndConversation();
+            ToQuestion();
         }
         else if (conversation.nextConversation != null)
             ChangeConversation(conversation.nextConversation);

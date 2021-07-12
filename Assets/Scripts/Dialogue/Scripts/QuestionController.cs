@@ -36,13 +36,13 @@ public class QuestionController : MonoBehaviour
     }
 
     private void Initialize() {
-        //questionText.text = question.text;
+        questionText.text = question.text;
 
         // See if you should add button
         bool show;
         for (int index = 0; index < question.choices.Length; index++) {
             show = true; 
-            for (int j = 0; j < question.choices[index].showConditions.Length; j++) {                
+            for (int j = 0; j < question.choices[index].showConditions.Length; j++) {
                 if (GameManager.Instance.conditions[question.choices[index].showConditions[j].condition] != question.choices[index].showConditions[j].state) {
                     show = false;
                     break;

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0afcc967b763a4be9abbe223b606b903, type: 3}
   m_Name: Assistance
   m_EditorClassIdentifier: 
-  text: 
+  text: Do you need any assistance?
   choices:
   - text: Yes
     conversation: {fileID: 11400000, guid: ca083ef4b5aaf4504ad044f9514110e3, type: 2}
