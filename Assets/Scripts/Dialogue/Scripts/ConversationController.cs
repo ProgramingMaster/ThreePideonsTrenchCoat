@@ -21,8 +21,14 @@ public class ConversationController : MonoBehaviour
     private int activeLineIndex = 0;
     private bool conversationStarted = false;
     private Image dialoguebox;
+    private Animator animator;
 
     public void ChangeConversation(Conversation nextConversation) {
+        Debug.Log("Conversation Changed");
+        if (nextConversation == null) {
+            EndConversation();
+            return;
+        }
         conversationStarted = false;
         conversation = nextConversation;
         name.text = conversation.name;
@@ -30,8 +36,11 @@ public class ConversationController : MonoBehaviour
     }
 
     public void StartNewConversation(Conversation NewConversation) {
+        if (NewConversation == null) {
+            Debug.Log("There is no conversation!");
+        }
         conversation = NewConversation;
-        name.text = conversation.name;
+        name.text = conversation.name; //why does every bug come back to this?
         AdvanceLine();
     }
 
@@ -69,12 +78,26 @@ public class ConversationController : MonoBehaviour
         //dialoguebox.gameObject.SetActive(false);
     }
 
-    private void EndConversation() {
+    void Start()
+    {
+        textDisplay.text = "";
+        dialoguebox = gameObject.GetComponent(typeof(Image)) as Image;
+        dialoguebox.gameObject.SetActive(false);
+        animator = gameObject.GetComponent(typeof(Animator)) as Animator;
+    }
+
+    IEnumerator over() {
+        animator.Play("DialogueDown");
+        yield return new WaitForSeconds(0.5f);
         conversation = null;
         conversationStarted = false;
         continueButton.SetActive(false);
         textDisplay.text = "";
         dialoguebox.gameObject.SetActive(false);
+    }
+
+    private void EndConversation() {
+        StartCoroutine("over");
     }
 
     private void DisplayLine() {
@@ -84,13 +107,7 @@ public class ConversationController : MonoBehaviour
         continueButton.SetActive(false);
         activeLineIndex ++;
     }
-    
-    void Start()
-    {
-        textDisplay.text = "";
-        dialoguebox = gameObject.GetComponent(typeof(Image)) as Image;
-        dialoguebox.gameObject.SetActive(false);
-    }
+
 
     // Update is called once per frame
     void Update()

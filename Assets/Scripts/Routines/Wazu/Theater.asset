@@ -17,9 +17,9 @@ MonoBehaviour:
       startTime:
         hour: 0
         minute: 0
-      duration: 9999999
+      duration: 2147483647
     type: Idle
-    startPosition: {x: -13.5, y: 4}
-    endPosition: {x: -13.5, y: 4}
+    startPosition: {x: -7, y: -2.84}
+    endPosition: {x: -7, y: -2.84}
     anim: {fileID: 0}
     startDialogue: {fileID: 11400000, guid: 828627986042f49c99d979ddbe86ee1d, type: 2}

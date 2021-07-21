@@ -9,9 +9,13 @@ public class Follow : MonoBehaviour
     public float speed;
     public GameObject player;
     public string followConditionName;
+    public SpriteRenderer sprite;
+
+    private int state;
     // Start is called before the first frame update
     void Start()
     {
+        state = -1;
     }
 
     // Update is called once per frame
@@ -19,10 +23,23 @@ public class Follow : MonoBehaviour
     {
         // if (isNearPlayer == false) {
             //super easy, barely an inconvience
-            float adjustedSpeed = speed + Math.Abs((player.transform.position.x - transform.position.x) + (player.transform.position.y - transform.position.y)) * Time.deltaTime;
-            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, adjustedSpeed);
+            if (state != 1) {
+                float adjustedSpeed = speed + Math.Abs((player.transform.position.x - transform.position.x) + (player.transform.position.y - transform.position.y)) * Time.deltaTime;
+                transform.position = Vector2.MoveTowards(transform.position, player.transform.position, adjustedSpeed);
+            }
         //}
     }
+
+    public void toTrenchcoat() {
+        Debug.Log("Sip");
+        sprite.enabled = false;
+    }
+
+    public void toBird() {
+        sprite.enabled = true;
+    }
+
+
 
 
     // void OnTriggerEnter2D(Collider2D other) {

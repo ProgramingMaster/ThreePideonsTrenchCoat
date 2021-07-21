@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6746086cf0cb42098f215c7051dcddf, type: 3}
+  m_Name: FluffWake
+  m_EditorClassIdentifier: 
+  lines:
+  - text: The human identity verifcation system is stupidly based on the humanoidial
+      figure of the suspect, and so by manipulating the subconscious identification
+      veritable analysis matrix complex bomplex nom nom-
+  question: {fileID: 0}
+  name: Fluff
+  nextConversation: {fileID: 11400000, guid: d2d66a7f933da45bab1b53e0c120cd27, type: 2}

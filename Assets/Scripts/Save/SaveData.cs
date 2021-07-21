@@ -15,9 +15,14 @@ public class SaveData {
     // }
     public bool MetLongBird;
     public bool MetToggy;
+    public bool WazuFollower;
+    public bool FluffFollower;
+    public bool HasTrenchcoat;
+    public bool LookingForTrenchcoat;
 
     public SaveData(Dictionary<string, bool> data) {
         MetLongBird = data["MetLongBird"];
-        MetToggy = data["MetToggy"]; 
+        MetToggy = data["MetToggy"];
+        
     }
 }

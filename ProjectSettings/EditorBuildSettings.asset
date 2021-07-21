@@ -9,6 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/OldDowntown.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/Backery.unity
+    path: Assets/Scenes/Bakery.unity
     guid: 01a6c836976c04da3915e81fe550ab92
+  - enabled: 1
+    path: Assets/Scenes/Theater.unity
+    guid: 76711bdb79ae943de9ce8e928953441e
+  - enabled: 1
+    path: Assets/Scenes/Storage.unity
+    guid: 7200bcb3ce26442009ee2acb531fb217
   m_configObjects: {}

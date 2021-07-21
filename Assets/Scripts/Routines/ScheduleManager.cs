@@ -21,7 +21,7 @@ public class ScheduleManager : MonoBehaviour
         //transform = GetComponent<Transform>();
         walking = false;
         i = 0;
-        StartAction();
+        //StartAction();
     }
 
     // Update is called once per frame
@@ -41,20 +41,22 @@ public class ScheduleManager : MonoBehaviour
 
     public void StartAction() {
         schedule = GetComponent<CharacterManager>().schedule;
+        Debug.Log("StartAction: " + schedule.schedule);
         actions = schedule.schedule;
         StartCoroutine(ActionManager());
     }
 
     IEnumerator ActionManager() {
        for (i = 0; i < actions.Length; i++) {
+           Debug.Log("Action[i]: " + actions[i].startDialogue);
            conversation = actions[i].startDialogue;
+           Debug.Log("Action: " + conversation);
            string type = actions[i].type;
            if (type == "Idle") {
                yield return StartCoroutine(Idle());
            } else if (type == "WalkX" || type == "WalkY") {
                yield return StartCoroutine(Walk());
            }
-
        }
     }
 

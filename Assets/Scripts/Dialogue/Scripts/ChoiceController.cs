@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using UnityEngine.Events;
 using TMPro;
+using System;
 
 [System.Serializable]
 public class ConversationChangeEvent : UnityEvent<Conversation> {}
@@ -11,6 +12,7 @@ public class ChoiceController : MonoBehaviour
     public Choice choice;
     public ConversationChangeEvent conversationChangeEvent;
     public SummonFollowers Summon;
+    public ToTrenchcoat toTrenchcoat;
     public GameObject higherSlot;
     public GameObject lowerSlot;
 
@@ -57,11 +59,20 @@ public class ChoiceController : MonoBehaviour
             int i;
             GameObject follower;
             SpriteRenderer followerSprite;
+            Sprite followerHead;
+            Animator followerAnimator;
             for (i = 0; i < choice.makeFollowers.Length; i++) {
+                if (choice.makeFollowers.Length > 2)
+                    Debug.Log("Dude, that's too many followers");
+
                 follower = GameObject.Find("Characters/" + choice.makeFollowers[i]);
-                followerSprite = follower.GetComponent(typeof(SpriteRenderer)) as SpriteRenderer;
+                followerSprite = follower.GetComponentInChildren(typeof(SpriteRenderer)) as SpriteRenderer;
+                followerAnimator = follower.GetComponent(typeof(Animator)) as Animator;
+                followerHead = (follower.GetComponent(typeof(SpriteRenderer)) as SpriteRenderer).sprite;
+                
+                toTrenchcoat.Setup(followerHead);
                 GameManager.Instance.conditions[choice.makeFollowers[i] + "Follower"] = true;
-                Summon.Summon(choice.makeFollowers[i], followerSprite.sprite, higherSlot, lowerSlot, follower.transform.position);
+                Summon.Summon(choice.makeFollowers[i], followerSprite.sprite, followerAnimator, higherSlot, lowerSlot, follower.transform.position);
             }
         }
     }

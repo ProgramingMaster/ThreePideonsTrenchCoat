@@ -49,7 +49,7 @@ public class TalkButton : MonoBehaviour
                 anim = talkButton.GetComponentInChildren(typeof(Animator)) as Animator;
                 button = talkButton.GetComponentInChildren(typeof(Button)) as Button;
                 created = true;
-                
+
                 button.onClick.AddListener(ButtonClicked);
             } else { // show it
                 started = true;

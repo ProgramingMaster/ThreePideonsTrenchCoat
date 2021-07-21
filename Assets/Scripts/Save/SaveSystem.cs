@@ -8,6 +8,7 @@ public static class SaveSystem
 {
     
     public static void Save (Dictionary<string, bool> gameData) {
+        Debug.Log("Save");
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Path.Combine(Application.persistentDataPath, "player.trash");
         FileStream stream = new FileStream(path, FileMode.Create);
@@ -17,8 +18,8 @@ public static class SaveSystem
         formatter.Serialize(stream, gameData);
         stream.Close();
     }
-
     public static Dictionary<string, bool> LoadData() {
+        Debug.Log("Load");
         string path = Path.Combine(Application.persistentDataPath, "player.trash");
         if (File.Exists(path)) {
             BinaryFormatter formatter = new BinaryFormatter();

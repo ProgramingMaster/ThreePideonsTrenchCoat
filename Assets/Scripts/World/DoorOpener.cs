@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class DoorOpener : MonoBehaviour
 {   
     private bool atDoor;
+    public string scene;
+    //public SaveSystem Save;
 
     void Start() {
         atDoor = false;
@@ -26,7 +28,8 @@ public class DoorOpener : MonoBehaviour
     {
         if (atDoor) {
             if (Input.GetKeyDown("g")) {
-                SceneManager.LoadScene("Backery");
+                GameManager.Instance.GameSave();
+                SceneManager.LoadScene(scene);
             }
         }
     }
