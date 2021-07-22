@@ -4,16 +4,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-[System.Serializable]
-public class ToTrenchcoatEvent : UnityEvent {}
-
-[System.Serializable]
-public class ToBirdFlyEvent : UnityEvent {}
-
-[System.Serializable]
-public class ToBirdLandEvent : UnityEvent {}
-
 public class InputManager : MonoBehaviour {
+	[Header("Events")]
+	[Space]
+
+	public UnityEvent ToTrenchcoatEvent;
+
+	public UnityEvent ToBirdFlyEvent;
+
+	public UnityEvent ToBirdLandEvent;
+
 	public int walkState; //1 = Trenchcoat, 2 = Bird Flying, 3 = Bird Walking
 	public bool FacingRight = true;
 
@@ -26,9 +26,6 @@ public class InputManager : MonoBehaviour {
 	public BirdWalk birdWalkController;
 
 	//Events
-	public ToTrenchcoatEvent toTrenchcoatEvent;
-	public ToBirdFlyEvent toBirdFlyEvent;
-	public ToBirdLandEvent toBirdLandEvent;
 
 	//public EnableLedges ledge;
 	Rigidbody2D rb;
@@ -42,9 +39,12 @@ public class InputManager : MonoBehaviour {
 	bool active;
 		
 	void Start () {
-		toTrenchcoatEvent = new ToTrenchcoatEvent();
-		toBirdFlyEvent = new ToBirdFlyEvent();
-		toBirdLandEvent = new ToBirdLandEvent();
+		if (ToTrenchcoatEvent == null)
+			ToTrenchcoatEvent = new UnityEvent();
+		if (ToBirdFlyEvent == null) 
+			ToBirdFlyEvent = new UnityEvent();
+		if (ToBirdLandEvent == null)
+			ToBirdLandEvent = new UnityEvent();
 
     	rb = GetComponent<Rigidbody2D>();
 		if (walkState == 2)
@@ -113,30 +113,34 @@ public class InputManager : MonoBehaviour {
     }
 
 	private void ToBirdWalk() {
-		toBirdLandEvent.Invoke();
+		ToBirdLandEvent.Invoke();
 		trenchcoat.SetActive(false);
 		birdFly.SetActive(false);
 		birdWalk.SetActive(true);
 		walkState = 3;
 		rb.gravityScale = 5;
+		GameManager.Instance.inTrenchcoat = false;
 	}
 
 	private void ToBirdFly() {
-		toBirdFlyEvent.Invoke();
+		ToBirdFlyEvent.Invoke();
 		trenchcoat.SetActive(false);
 		birdFly.SetActive(true);
 		birdWalk.SetActive(false);
 		walkState = 2;
 		rb.gravityScale = 0;
+		GameManager.Instance.inTrenchcoat = false;
 	}
 
 	private void ToTrenchcoat() {
-		toTrenchcoatEvent.Invoke();
+		ToTrenchcoatEvent.Invoke();
 		birdFly.SetActive(false);
 		trenchcoat.SetActive(true);
 		birdWalk.SetActive(false);
 		walkState = 1;
 		rb.gravityScale = 1;
+		GameManager.Instance.inTrenchcoat = true;
+		Debug.Log(GameManager.Instance.inTrenchcoat);
 	}
 
 	public void OnGround() {

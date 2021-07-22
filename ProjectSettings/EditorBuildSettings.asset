@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Storage.unity
     guid: 7200bcb3ce26442009ee2acb531fb217
+  - enabled: 1
+    path: Assets/Scenes/InsideTheater.unity
+    guid: e2720f276ca8448c493be42e116bab92
   m_configObjects: {}

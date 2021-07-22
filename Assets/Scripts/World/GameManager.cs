@@ -12,7 +12,11 @@ public class GameManager : MonoBehaviour
     public float playerHealth=100;
     public int gameTimeHour = 2;
     public int gameTimeMinute = 0;
+    public bool inTrenchcoat;
+
+
     public Dictionary<string, bool> conditions = new Dictionary<string, bool> {
+        //Stuff
         //Test
         {"AskedToggyForPassword", false},
         {"AgreedToGetPasswordForFlower", false},
@@ -33,6 +37,14 @@ public class GameManager : MonoBehaviour
 
     private void Start() {
         GameLoad();
+    }
+
+    public void InTrenchcoat() {
+        inTrenchcoat = true;
+    }
+
+    public void NotInTrenchcoat() {
+        inTrenchcoat = false;
     }
 
     public void NewGame() {
