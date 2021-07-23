@@ -65,14 +65,14 @@ public class ChoiceController : MonoBehaviour
                 if (choice.makeFollowers.Length > 2)
                     Debug.Log("Dude, that's too many followers");
 
-                follower = GameObject.Find("Characters/" + choice.makeFollowers[i]);
-                followerSprite = follower.GetComponentInChildren(typeof(SpriteRenderer)) as SpriteRenderer;
-                followerAnimator = follower.GetComponent(typeof(Animator)) as Animator;
-                followerHead = (follower.GetComponent(typeof(SpriteRenderer)) as SpriteRenderer).sprite;
+                follower = GameObject.Find("Characters/" + choice.makeFollowers[i].name);
+                // followerSprite = follower.GetComponentInChildren(typeof(SpriteRenderer)) as SpriteRenderer;
+                // followerAnimator = follower.GetComponent(typeof(Animator)) as Animator;
+                // followerHead = (follower.GetComponent(typeof(SpriteRenderer)) as SpriteRenderer).sprite;
                 
-                toTrenchcoat.Setup(followerHead);
+                toTrenchcoat.Setup(choice.makeFollowers[i].head);
                 GameManager.Instance.conditions[choice.makeFollowers[i] + "Follower"] = true;
-                Summon.Summon(choice.makeFollowers[i], followerSprite.sprite, followerAnimator, higherSlot, lowerSlot, follower.transform.position);
+                Summon.Summon(choice.makeFollowers[i].name, choice.makeFollowers[i].sprite, choice.makeFollowers[i].anim, higherSlot, lowerSlot, follower.transform.position);
             }
         }
     }
