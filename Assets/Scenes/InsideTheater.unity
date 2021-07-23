@@ -1428,6 +1428,7 @@ MonoBehaviour:
   speed: 0.01
   player: {fileID: 697936696}
   followConditionName: 
+  sprite: {fileID: 0}
 --- !u!212 &593243555
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1627,6 +1628,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5495be4697864389a2dae4dbad90c85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ToTrenchcoatEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  ToBirdFlyEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  ToBirdLandEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   walkState: 3
   FacingRight: 1
   trenchcoat: {fileID: 865085071}
@@ -2671,6 +2717,9 @@ MonoBehaviour:
   playerHealth: 100
   gameTimeHour: 2
   gameTimeMinute: 0
+  inTrenchcoat: 0
+  follower1: {fileID: 0}
+  follower2: {fileID: 0}
 --- !u!1 &1057116769
 GameObject:
   m_ObjectHideFlags: 0
@@ -4002,6 +4051,7 @@ MonoBehaviour:
   speed: 0.01
   player: {fileID: 1039799946}
   followConditionName: 
+  sprite: {fileID: 0}
 --- !u!212 &1501710319
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4563,6 +4613,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   Summon: {fileID: 1329107304}
+  toTrenchcoat: {fileID: 0}
   higherSlot: {fileID: 1501710314}
   lowerSlot: {fileID: 593243551}
 --- !u!114 &1654180859
@@ -5317,6 +5368,7 @@ MonoBehaviour:
   speed: 0.01
   player: {fileID: 643040686}
   followConditionName: 
+  sprite: {fileID: 0}
 --- !u!58 &1867732618
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -5813,6 +5865,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   Summon: {fileID: 0}
+  toTrenchcoat: {fileID: 0}
   higherSlot: {fileID: 0}
   lowerSlot: {fileID: 0}
 --- !u!114 &2133811450

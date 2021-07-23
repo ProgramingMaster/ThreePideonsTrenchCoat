@@ -56,24 +56,19 @@ public class ChoiceController : MonoBehaviour
             GameManager.Instance.conditions[choice.effectCondition] = true;
         }
         if (choice.makeFollowers != null) {
-            int i;
-            GameObject follower;
-            SpriteRenderer followerSprite;
-            Sprite followerHead;
-            Animator followerAnimator;
-            for (i = 0; i < choice.makeFollowers.Length; i++) {
-                if (choice.makeFollowers.Length > 2)
-                    Debug.Log("Dude, that's too many followers");
-
-                follower = GameObject.Find("Characters/" + choice.makeFollowers[i].name);
-                // followerSprite = follower.GetComponentInChildren(typeof(SpriteRenderer)) as SpriteRenderer;
-                // followerAnimator = follower.GetComponent(typeof(Animator)) as Animator;
-                // followerHead = (follower.GetComponent(typeof(SpriteRenderer)) as SpriteRenderer).sprite;
-                
-                toTrenchcoat.Setup(choice.makeFollowers[i].head);
-                GameManager.Instance.conditions[choice.makeFollowers[i] + "Follower"] = true;
-                Summon.Summon(choice.makeFollowers[i].name, choice.makeFollowers[i].sprite, choice.makeFollowers[i].anim, higherSlot, lowerSlot, follower.transform.position);
-            }
+            SetupRecruits(choice.makeFollowers[0], higherSlot);
+            SetupRecruits(choice.makeFollowers[1], lowerSlot);
         }
+    }
+
+    void SetupRecruits(Follower follower, GameObject slot) {
+        GameObject followerToBe = GameObject.Find("Characters/" + follower.name);
+        // followerSprite = follower.GetComponentInChildren(typeof(SpriteRenderer)) as SpriteRenderer;
+        // followerAnimator = follower.GetComponent(typeof(Animator)) as Animator;
+        // followerHead = (follower.GetComponent(typeof(SpriteRenderer)) as SpriteRenderer).sprite;
+
+        toTrenchcoat.Setup(follower.head);
+        GameManager.Instance.conditions[followerToBe + "Follower"] = true;
+        GameManager.Instance.Summon(follower, slot, followerToBe.transform.position);
     }
 }

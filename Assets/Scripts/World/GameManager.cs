@@ -14,7 +14,8 @@ public class GameManager : MonoBehaviour
     public int gameTimeMinute = 0;
     public bool inTrenchcoat;
 
-
+    public Follower follower1;
+    public Follower follower2;
 
     public Dictionary<string, bool> conditions = new Dictionary<string, bool> {
         //Stuff
@@ -43,6 +44,8 @@ public class GameManager : MonoBehaviour
     public void NewGame() {
         ES3.DeleteKey("schedules");
         ES3.DeleteKey("conditions");
+        ES3.DeleteKey("follower1");
+        ES3.DeleteKey("follower2");
         SceneManager.LoadScene("Theater");
     }
 
@@ -53,10 +56,35 @@ public class GameManager : MonoBehaviour
             Debug.Log("Schedule Exists");
             schedules = ES3.Load<Dictionary<string, Schedule>>("schedules");
         }
+        if (ES3.KeyExists("follower1") && ES3.KeyExists("follower2")) {
+            follower1 = ES3.Load<Follower>("follower1");
+            follower2 = ES3.Load<Follower>("follower2");
+        }
     }
 
     public void GameSave() {
         ES3.Save("conditions", conditions);
         ES3.Save("schedules", schedules);
+        ES3.Save("follower1", follower1);
+        ES3.Save("follower2", follower2);
+    }
+
+    public void Summon(Follower follower, GameObject slot, Vector2 position) {
+        Debug.Log("Summoned!");
+        if (follower1 == null) {
+            follower1 = follower;
+        } else {
+            follower2 = follower;
+        }
+
+        GameObject character = GameObject.Find("Characters/" + follower.name);
+        if (character != null)
+            character.SetActive(false);
+
+        SpriteRenderer slotSprite = slot.GetComponent(typeof(SpriteRenderer)) as SpriteRenderer;
+        Animator slotAnimator = slot.GetComponent(typeof(Animator)) as Animator;
+        slotSprite.sprite = follower.sprite;
+        slotAnimator.runtimeAnimatorController = follower.anim;
+        slot.transform.position = position;
     }
 }
