@@ -57,25 +57,26 @@ public class GameManager : MonoBehaviour
             schedules = ES3.Load<Dictionary<string, Schedule>>("schedules");
         }
         if (ES3.KeyExists("follower1") && ES3.KeyExists("follower2")) {
+            //follower1 = new Follower();
+            //follower2 = new Follower();
             follower1 = ES3.Load<Follower>("follower1");
+            Debug.Log(follower1);
             follower2 = ES3.Load<Follower>("follower2");
+            Debug.Log(follower2);
+            //Debug.Log("Saved" + follower1.name + " & " + follower2.name);
         }
     }
 
     public void GameSave() {
         ES3.Save("conditions", conditions);
         ES3.Save("schedules", schedules);
+        //Debug.Log("Saving: " + follower1.name + " & " + follower2.name);
         ES3.Save("follower1", follower1);
         ES3.Save("follower2", follower2);
     }
 
     public void Summon(Follower follower, GameObject slot, Vector2 position) {
         Debug.Log("Summoned!");
-        if (follower1 == null) {
-            follower1 = follower;
-        } else {
-            follower2 = follower;
-        }
 
         GameObject character = GameObject.Find("Characters/" + follower.name);
         if (character != null)

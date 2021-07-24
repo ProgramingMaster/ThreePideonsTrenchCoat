@@ -22,5 +22,5 @@ MonoBehaviour:
     showConditions: []
     effectCondition: 
     makeFollowers:
-    - {fileID: 11400000, guid: 4ec133ccfbaa44ad5bc6c359371d76ea, type: 2}
     - {fileID: 11400000, guid: af39543d82ef2478285157d50abb6de7, type: 2}
+    - {fileID: 11400000, guid: 4ec133ccfbaa44ad5bc6c359371d76ea, type: 2}

@@ -56,6 +56,8 @@ public class ChoiceController : MonoBehaviour
             GameManager.Instance.conditions[choice.effectCondition] = true;
         }
         if (choice.makeFollowers != null) {
+            GameManager.Instance.follower1 = choice.makeFollowers[0];
+            GameManager.Instance.follower2 = choice.makeFollowers[1];
             SetupRecruits(choice.makeFollowers[0], higherSlot);
             SetupRecruits(choice.makeFollowers[1], lowerSlot);
         }
