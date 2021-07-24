@@ -7,7 +7,7 @@ public class RecruitSetup : MonoBehaviour
     public GameObject higherSlot;
     public GameObject lowerSlot;
 
-    void Start() {
+    public void Recruit() {
         Debug.Log("asdf");
         if (GameManager.Instance.follower1 != null && GameManager.Instance.follower2 != null) {
             Debug.Log("Recruited!");

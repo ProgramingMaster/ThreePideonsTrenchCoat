@@ -2,10 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 
 public class GameManager : MonoBehaviour
 {
+
+    [Header("Events")]
+	[Space]
+
+	public UnityEvent Loaded;
     public static GameManager Instance { get; set; }
 
     //public SaveSystem Save;
@@ -38,6 +44,8 @@ public class GameManager : MonoBehaviour
     }
 
     private void Start() {
+        if (Loaded == null)
+            Loaded = new UnityEvent();
         GameLoad();
     }
 
@@ -65,12 +73,14 @@ public class GameManager : MonoBehaviour
             Debug.Log(follower2);
             //Debug.Log("Saved" + follower1.name + " & " + follower2.name);
         }
+        Loaded.Invoke();
     }
 
     public void GameSave() {
         ES3.Save("conditions", conditions);
         ES3.Save("schedules", schedules);
         //Debug.Log("Saving: " + follower1.name + " & " + follower2.name);
+        //Debug.Log("")
         ES3.Save("follower1", follower1);
         ES3.Save("follower2", follower2);
     }
