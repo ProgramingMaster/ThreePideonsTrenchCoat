@@ -2,18 +2,26 @@
 using System.Collections;
 using UnityEngine.UI;
 using System;
+using TMPro;
+
 public class Clock : MonoBehaviour {
-    private Text textClock;
+    private TMP_Text textClock;
     int hour;
     int minute;
     float second;
 
     void Awake (){
-        textClock = GetComponent<Text>();
+        textClock = GetComponent<TMP_Text>();
         second = 0;
         minute = 0;
         hour = 2;
     }
+
+    void Start() {
+        minute = GameManager.Instance.gameTimeMinute;
+        hour = GameManager.Instance.gameTimeHour;
+    }
+
     void Update (){
         second += Time.deltaTime;
 

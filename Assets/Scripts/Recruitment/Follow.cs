@@ -23,21 +23,21 @@ public class Follow : MonoBehaviour
     {
         // if (isNearPlayer == false) {
             //super easy, barely an inconvience
-            if (state != 1) {
-                float adjustedSpeed = speed + Math.Abs((player.transform.position.x - transform.position.x) + (player.transform.position.y - transform.position.y)) * Time.deltaTime;
-                transform.position = Vector2.MoveTowards(transform.position, player.transform.position, adjustedSpeed);
-            }
+            //if (state != 1) {
+            float adjustedSpeed = speed + Math.Abs((player.transform.position.x - transform.position.x) + (player.transform.position.y - transform.position.y)) * Time.deltaTime;
+            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, adjustedSpeed);
+            //}
         //}
     }
 
-    public void toTrenchcoat() {
-        Debug.Log("Sip");
-        sprite.enabled = false;
-    }
+    // public void toTrenchcoat() {
+    //     Debug.Log("Sip");
+    //     sprite.enabled = false;
+    // }
 
-    public void toBird() {
-        sprite.enabled = true;
-    }
+    // public void toBird() {
+    //     sprite.enabled = true;
+    // }
 
 
 

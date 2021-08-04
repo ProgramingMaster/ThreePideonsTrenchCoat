@@ -54,6 +54,8 @@ public class GameManager : MonoBehaviour
         ES3.DeleteKey("conditions");
         ES3.DeleteKey("follower1");
         ES3.DeleteKey("follower2");
+        ES3.DeleteKey("timeHour");
+        ES3.DeleteKey("timeMinute");
         SceneManager.LoadScene("Theater");
     }
 
@@ -65,13 +67,19 @@ public class GameManager : MonoBehaviour
             schedules = ES3.Load<Dictionary<string, Schedule>>("schedules");
         }
         if (ES3.KeyExists("follower1") && ES3.KeyExists("follower2")) {
-            //follower1 = new Follower();
-            //follower2 = new Follower();
+            // follower1 = new Follower();
+            // follower2 = new Follower();
             follower1 = ES3.Load<Follower>("follower1");
-            Debug.Log(follower1);
+            Debug.Log(follower1 == null);
             follower2 = ES3.Load<Follower>("follower2");
-            Debug.Log(follower2);
+            Debug.Log(follower2 == null);
             //Debug.Log("Saved" + follower1.name + " & " + follower2.name);
+        }
+
+        if (ES3.KeyExists("timeHour") && ES3.KeyExists("timeMinute")) {
+            Debug.Log("Tiiiiime!");
+            gameTimeHour = ES3.Load<int>("timeHour");
+            gameTimeMinute = ES3.Load<int>("timeMinute");
         }
         Loaded.Invoke();
     }
@@ -83,6 +91,8 @@ public class GameManager : MonoBehaviour
         //Debug.Log("")
         ES3.Save("follower1", follower1);
         ES3.Save("follower2", follower2);
+        ES3.Save("timeHour", gameTimeHour);
+        ES3.Save("timeMinute", gameTimeMinute);
     }
 
     public void Summon(Follower follower, GameObject slot, Vector2 position) {

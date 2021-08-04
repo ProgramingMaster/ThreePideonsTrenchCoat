@@ -30,8 +30,8 @@ public class CharacterManager : MonoBehaviour
         scheduleManager = GetComponent<ScheduleManager>();
         if (GameManager.Instance.schedules.ContainsKey(name)) {
             schedule = GameManager.Instance.schedules[name];
-            Debug.Log("Hey, Sup: " + GameManager.Instance.schedules["Wazu"].schedule[0].timeslot.duration);
-            Debug.Log("Hey, Sup (2): " + GameManager.Instance.schedules["Wazu"].schedule[0].startDialogue);
+            // Debug.Log("Hey, Sup: " + GameManager.Instance.schedules["Wazu"].schedule[0].timeslot.duration);
+            // Debug.Log("Hey, Sup (2): " + GameManager.Instance.schedules["Wazu"].schedule[0].startDialogue);
         } else {
             GameManager.Instance.schedules[name] = schedule;            
         }

@@ -15,6 +15,8 @@ public class ToTrenchcoat : MonoBehaviour
     }
  
     public void Setup(Sprite head) {
+        Debug.Log("Who called me?");
+        //This is for the head. Isn't called right now
         if ((left.GetComponent(typeof(SpriteRenderer)) as SpriteRenderer).sprite == null)
             (left.GetComponent(typeof(SpriteRenderer)) as SpriteRenderer).sprite = head;
         else

@@ -21,6 +21,7 @@ public struct Action {
     public Vector2 endPosition;
     public Animation anim;
     public Conversation startDialogue;
+    public string scene;
 }
 
 [CreateAssetMenu(fileName = "New Schedule", menuName = "Schedule")]

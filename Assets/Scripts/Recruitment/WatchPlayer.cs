@@ -11,7 +11,7 @@ public class WatchPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        facingLeft = true;
+        facingLeft = false;
     }
 
     // Update is called once per frame

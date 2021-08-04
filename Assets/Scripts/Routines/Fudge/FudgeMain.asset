@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3683ac42c9965459cb1826e4d13f5096, type: 3}
+  m_Name: FudgeMain
+  m_EditorClassIdentifier: 
+  schedule:
+  - timeslot:
+      startTime:
+        hour: 2
+        minute: 0
+      duration: 30
+    type: Idle
+    startPosition: {x: 23, y: -4}
+    endPosition: {x: -5, y: -3}
+    anim: {fileID: 0}
+    startDialogue: {fileID: 0}
+    scene: 
+  - timeslot:
+      startTime:
+        hour: 2
+        minute: 30
+      duration: 30
+    type: WalkY
+    startPosition: {x: -5, y: -3}
+    endPosition: {x: -5, y: 8}
+    anim: {fileID: 0}
+    startDialogue: {fileID: 0}
+    scene: 
+  - timeslot:
+      startTime:
+        hour: 2
+        minute: 30
+      duration: 30
+    type: WalkY
+    startPosition: {x: -5, y: -3}
+    endPosition: {x: -5, y: 8}
+    anim: {fileID: 0}
+    startDialogue: {fileID: 0}
+    scene: 
