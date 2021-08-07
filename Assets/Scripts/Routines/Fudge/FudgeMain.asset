@@ -17,32 +17,35 @@ MonoBehaviour:
       startTime:
         hour: 2
         minute: 0
+      duration: 10
+    type: WalkX
+    startPosition: {x: 23, y: -4}
+    endPosition: {x: 15, y: -4}
+    anim: {fileID: 0}
+    startDialogue: {fileID: 0}
+    say: 
+    scene: NewMain
+  - timeslot:
+      startTime:
+        hour: 2
+        minute: 10
+      duration: 10
+    type: Say
+    startPosition: {x: -5, y: -3}
+    endPosition: {x: -5, y: 8}
+    anim: {fileID: 0}
+    startDialogue: {fileID: 0}
+    say: Hey, What's up
+    scene: NewMain
+  - timeslot:
+      startTime:
+        hour: 2
+        minute: 20
       duration: 30
     type: Idle
-    startPosition: {x: 23, y: -4}
-    endPosition: {x: -5, y: -3}
-    anim: {fileID: 0}
-    startDialogue: {fileID: 0}
-    scene: 
-  - timeslot:
-      startTime:
-        hour: 2
-        minute: 30
-      duration: 30
-    type: WalkY
-    startPosition: {x: -5, y: -3}
+    startPosition: {x: 15, y: -4}
     endPosition: {x: -5, y: 8}
     anim: {fileID: 0}
     startDialogue: {fileID: 0}
-    scene: 
-  - timeslot:
-      startTime:
-        hour: 2
-        minute: 30
-      duration: 30
-    type: WalkY
-    startPosition: {x: -5, y: -3}
-    endPosition: {x: -5, y: 8}
-    anim: {fileID: 0}
-    startDialogue: {fileID: 0}
-    scene: 
+    say: 
+    scene: NewMain

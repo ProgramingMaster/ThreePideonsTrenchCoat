@@ -21,6 +21,7 @@ public struct Action {
     public Vector2 endPosition;
     public Animation anim;
     public Conversation startDialogue;
+    public string say;
     public string scene;
 }
 
