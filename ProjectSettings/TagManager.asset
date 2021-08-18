@@ -6,6 +6,10 @@ TagManager:
   tags:
   - ledge
   - Wall
+  - Layer1
+  - Layer2
+  - Layer3
+  - Layer4
   layers:
   - Default
   - TransparentFX
@@ -48,6 +52,18 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 99803201
+    locked: 0
+  - name: Layer4
+    uniqueID: 2142589977
+    locked: 0
+  - name: Layer3
+    uniqueID: 3741681553
+    locked: 0
+  - name: Layer2
+    uniqueID: 2547604037
+    locked: 0
+  - name: Layer1
+    uniqueID: 2113582213
     locked: 0
   - name: Foreground
     uniqueID: 2019798589

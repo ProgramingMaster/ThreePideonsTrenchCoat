@@ -1,24 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine;
 using TMPro;
 
 public class ScheduleManager : MonoBehaviour
 {
+    public bool StartInScene;
+    public TMP_Text sayText;
+    public Animator anim;
+
     private Schedule schedule;
     private Action[] actions;
     private Vector2 TheBadPlace;
-    public bool StartInScene;
-    public TMP_Text sayText;
     private bool inScene;
     //Transform transform;
-    bool walking;
     int i;
     float startPos;
     float endPos;
     float step;
     int duration;
+
     [@System.NonSerialized]
     public Conversation conversation;
 
@@ -26,7 +28,7 @@ public class ScheduleManager : MonoBehaviour
     void Start()
     {
         //transform = GetComponent<Transform>();
-        walking = false;
+        //walking = false;
         i = 0;
         TheBadPlace = new Vector2(-1000, -1000);
         inScene = StartInScene;
@@ -36,18 +38,20 @@ public class ScheduleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    void FixedUpdate() {
-        if (walking && inScene) {
-            //super easy, barely an inconvience
-            float step = (Mathf.Abs(endPos - startPos) / actions[i].timeslot.duration) * Time.deltaTime;
-
-            transform.position = Vector2.MoveTowards(transform.position, actions[i].endPosition, step);
-            //Debug.Log(actions[i].endPosition);
+        if (actions[i].anim != null) {
+            anim.Play(actions[i].anim);
         }
     }
+
+    // void FixedUpdate() {
+    //     if (walking && inScene) {
+    //         //super easy, barely an inconvience
+    //         float step = (Mathf.Abs(endPos - startPos) / actions[i].timeslot.duration) * Time.deltaTime;
+
+    //         transform.position = Vector2.MoveTowards(transform.position, actions[i].endPosition, step);
+    //         //Debug.Log(actions[i].endPosition);
+    //     }
+    // }
 
     public void StartAction() {
         schedule = GetComponent<CharacterManager>().schedule;
@@ -134,7 +138,7 @@ public class ScheduleManager : MonoBehaviour
     IEnumerator Say() {
         char[] sayArray = actions[i].say.ToCharArray();
         float typingSpeed = (float)( (duration * 0.9) / sayArray.Length);
-        Debug.Log(typingSpeed);
+        Debug.Log("typing speed: " + typingSpeed);
         foreach(char letter in sayArray) {
             sayText.text += letter;
             yield return new WaitForSecondsRealtime(typingSpeed);
@@ -143,18 +147,27 @@ public class ScheduleManager : MonoBehaviour
     }
 
     //Need to make function to determine walk speed based on duration
-    IEnumerator Walk() {
-        walking = true;
-        if (actions[i].type == "WalkX") {
-            startPos = actions[i].startPosition.x;
-            endPos = actions[i].endPosition.x;
-        } else if (actions[i].type == "WalkY") {
-            startPos = actions[i].startPosition.y;
-            endPos = actions[i].endPosition.y;
+    // IEnumerator Walk() {
+    //     walking = true;
+    //     if (actions[i].type == "WalkX") {
+    //         startPos = actions[i].startPosition.x;
+    //         endPos = actions[i].endPosition.x;
+    //     } else if (actions[i].type == "WalkY") {
+    //         startPos = actions[i].startPosition.y;
+    //         endPos = actions[i].endPosition.y;
+    //     }
+    //     Debug.Log("StartPos: " + startPos + " EndPos: " + endPos);
+    //     yield return new WaitForSecondsRealtime(duration);
+    //     walking = false;
+    // }
+
+    public IEnumerator Walk() {
+        float t = 0f;
+        while(t < 1) {
+                t += Time.deltaTime / duration;
+                transform.position = Vector2.Lerp(actions[i].startPosition, actions[i].endPosition, t);
+                yield return null;
         }
-        Debug.Log("StartPos: " + startPos + " EndPos: " + endPos);
-        yield return new WaitForSecondsRealtime(duration);
-        walking = false;
     }
 
     IEnumerator Idle() {

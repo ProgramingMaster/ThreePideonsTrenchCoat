@@ -19,7 +19,7 @@ public struct Action {
     public string type;
     public Vector2 startPosition;
     public Vector2 endPosition;
-    public Animation anim;
+    public string anim;
     public Conversation startDialogue;
     public string say;
     public string scene;

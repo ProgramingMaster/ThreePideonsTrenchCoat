@@ -14,21 +14,28 @@ public class InputManager : MonoBehaviour {
 
 	public UnityEvent ToBirdLandEvent;
 
+	private float wallLine;
+	private float floorLine;
+	public int currentlayer;
+
 	public int walkState; //1 = Trenchcoat, 2 = Bird Flying, 3 = Bird Walking
 	public bool FacingRight = true;
 
 	public GameObject trenchcoat;
 	public GameObject birdFly;
 	public GameObject birdWalk;
+	public CircleCollider2D playerColliderRef;
     
     public TrechcoatController controller;
 	public ControlledFlight flyController;
 	public BirdWalk birdWalkController;
+	public layers layerScript;
 
 	//Events
 
 	//public EnableLedges ledge;
 	Rigidbody2D rb;
+	public SpriteRenderer renderer;
 
     public float runSpeed = 40f;
 
@@ -37,8 +44,34 @@ public class InputManager : MonoBehaviour {
     bool jump = false;
     //bool crouch = false;
 	bool active;
+	float layer1;
+	float layer2;
+	float layer3;
+
+	string layerName = "Layer";
 		
 	void Start () {
+		//layer
+		currentlayer = 1;
+		// layer1 = (float) (wallLine - (Mathf.Abs(floorLine - wallLine) * 0.7));
+		// layer2 = (float) (wallLine - (Mathf.Abs(floorLine - wallLine) * 0.4));
+		// layer3 = (float) (wallLine - (Mathf.Abs(floorLine - wallLine) * 0.1));
+		layer1 = (float) (layerScript.layer1 + 1.1);
+		layer2 = (float) (layerScript.layer2 + 1.1);
+		layer3 = (float) (layerScript.layer3 + 1.1);
+		// wallLine = layerScript.wallLine;
+		// floorLine = layerScript.floorLine;
+
+		for (int j = 1; j <= 4; j++) {
+			GameObject[] GOs = GameObject.FindGameObjectsWithTag(layerName + j);
+			
+			for (int i=0; i<GOs.Length; i++) {
+				// to access component - GOs[i].GetComponent.<BoxCollider>()
+				Physics2D.IgnoreCollision(playerColliderRef, GOs[i].GetComponent<BoxCollider2D>());
+			}
+		}
+		Debug.Log(layer1 + " " + layer2 + " " + layer3);
+
 		if (ToTrenchcoatEvent == null)
 			ToTrenchcoatEvent = new UnityEvent();
 		if (ToBirdFlyEvent == null) 
@@ -47,6 +80,8 @@ public class InputManager : MonoBehaviour {
 			ToBirdLandEvent = new UnityEvent();
 
     	rb = GetComponent<Rigidbody2D>();
+		//renderer = GetComponent<SpriteRenderer>();
+
 		if (walkState == 2)
 			active = false;
 		else
@@ -110,7 +145,48 @@ public class InputManager : MonoBehaviour {
 			// 	crouch = false;
 			// }
 		}
+		if (transform.position.y <= layer1) {
+			currentlayer = 1;
+			renderer.sortingLayerName = layerName + currentlayer;
+			//layerColliderControl(currentlayer, true);
+		} else {
+			//layerColliderControl(currentlayer, false);
+		}
+		if (transform.position.y > layer1) {
+			currentlayer = 2;
+			renderer.sortingLayerName = layerName + currentlayer;
+			layerColliderControl(currentlayer, true);
+		} else {
+			//layerColliderControl(currentlayer, false);
+		}
+
+		if (transform.position.y > layer2) {
+			currentlayer = 3;
+			renderer.sortingLayerName = layerName + currentlayer;
+			//layerColliderControl(currentlayer, true);
+		} else {
+			//layerColliderControl(currentlayer, false);
+		}
+		if (transform.position.y > layer3) {
+			currentlayer = 4;
+			renderer.sortingLayerName = layerName + currentlayer;
+			//layerColliderControl(currentlayer, true);
+		} else {
+			//layerColliderControl(currentlayer, false);
+		}
+		Debug.Log(currentlayer);
+
     }
+
+	private void layerColliderControl(int layer, bool state) {
+		GameObject[] GOs = GameObject.FindGameObjectsWithTag(layerName + layer);
+		
+		for (int i=0; i<GOs.Length; i++) {
+			// to access component - GOs[i].GetComponent.<BoxCollider>()
+			
+			GOs[i].GetComponent<BoxCollider2D>().enabled = state;
+		}
+	}
 
 	private void ToBirdWalk() {
 		ToBirdLandEvent.Invoke();
@@ -138,7 +214,7 @@ public class InputManager : MonoBehaviour {
 		trenchcoat.SetActive(true);
 		birdWalk.SetActive(false);
 		walkState = 1;
-		rb.gravityScale = 1;
+		rb.gravityScale = 0;
 		GameManager.Instance.inTrenchcoat = true;
 		Debug.Log(GameManager.Instance.inTrenchcoat);
 	}
@@ -150,17 +226,17 @@ public class InputManager : MonoBehaviour {
 	}
   
     void FixedUpdate () {
-        // Move our character
-		if (walkState == 3) {
-			birdWalkController.Move(horizontalMove * Time.fixedDeltaTime);
-		}
-		if (walkState == 1) {
-        	controller.Move(horizontalMove * Time.fixedDeltaTime, false, jump);
-		}
-        jump = false; //What does this do?
-		if (walkState == 2) {
-			flyController.Move(horizontalMove * Time.fixedDeltaTime, verticalMove * Time.fixedDeltaTime);
-		}
+        // // Move our character
+		// if (walkState == 3) {
+		// 	birdWalkController.Move(horizontalMove * Time.fixedDeltaTime);
+		// }
+		// if (walkState == 1) {
+        // 	controller.Move(horizontalMove * Time.fixedDeltaTime, false, jump);
+		// }
+        // jump = false; //What does this do?
+		// if (walkState == 2) {
+		flyController.Move(horizontalMove * Time.fixedDeltaTime, verticalMove * Time.fixedDeltaTime);
+		//}
     }
 
 	void Flip() {
