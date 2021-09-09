@@ -19,7 +19,12 @@ public class QuestionController : MonoBehaviour
         Initialize();
     }
 
-    public void Hide(Conversation conversation) {
+    // public void Hide(Conversation conversation) {
+    //     RemoveChoices();
+    //     gameObject.SetActive(false);
+    // }
+
+    public void Hide() {
         RemoveChoices();
         gameObject.SetActive(false);
     }

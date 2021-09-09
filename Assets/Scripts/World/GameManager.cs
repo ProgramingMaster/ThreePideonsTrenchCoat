@@ -16,9 +16,12 @@ public class GameManager : MonoBehaviour
 
     //public SaveSystem Save;
     public float playerHealth=100;
+    public Vector2 startPos = new Vector2(-20, -5);
+
     public int gameTimeHour = 2;
     public int gameTimeMinute = 0;
     public bool inTrenchcoat;
+    public Vector2 position;
 
     public Follower follower1;
     public Follower follower2;
@@ -28,6 +31,7 @@ public class GameManager : MonoBehaviour
         //Test
         {"AskedToggyForPassword", false},
         {"AgreedToGetPasswordForFlower", false},
+        {"NewRun", true},
         //Theater
         {"WazuFollower", false},
         {"FluffFollower", false},
@@ -44,6 +48,8 @@ public class GameManager : MonoBehaviour
     }
 
     private void Start() {
+        if (position == null)
+            position = startPos;
         if (Loaded == null)
             Loaded = new UnityEvent();
         GameLoad();
@@ -55,6 +61,7 @@ public class GameManager : MonoBehaviour
         ES3.DeleteKey("follower1");
         ES3.DeleteKey("follower2");
         ES3.DeleteKey("timeHour");
+        ES3.DeleteKey("position");
         ES3.DeleteKey("timeMinute");
         SceneManager.LoadScene("Theater");
     }
@@ -65,6 +72,7 @@ public class GameManager : MonoBehaviour
         if (ES3.KeyExists("schedules")) {
             Debug.Log("Schedule Exists");
             schedules = ES3.Load<Dictionary<string, Schedule>>("schedules");
+            Debug.Log(schedules);
         }
         if (ES3.KeyExists("follower1") && ES3.KeyExists("follower2")) {
             // follower1 = new Follower();
@@ -80,19 +88,29 @@ public class GameManager : MonoBehaviour
             Debug.Log("Tiiiiime!");
             gameTimeHour = ES3.Load<int>("timeHour");
             gameTimeMinute = ES3.Load<int>("timeMinute");
+            Debug.Log(gameTimeHour + " : " + gameTimeMinute);
+        }
+        if (ES3.KeyExists("position")) {
+            position = ES3.Load<Vector2>("position");
+            Debug.Log("POSPOS " + position);
         }
         Loaded.Invoke();
     }
 
     public void GameSave() {
+        conditions["NewRun"] = false;
         ES3.Save("conditions", conditions);
-        ES3.Save("schedules", schedules);
+        // if (ES3.KeyExists("schedules")) {
+        //     Debug.Log("Schedule Exists");
+            ES3.Save("schedules", schedules);
+        //}
         //Debug.Log("Saving: " + follower1.name + " & " + follower2.name);
         //Debug.Log("")
         ES3.Save("follower1", follower1);
         ES3.Save("follower2", follower2);
         ES3.Save("timeHour", gameTimeHour);
         ES3.Save("timeMinute", gameTimeMinute);
+        ES3.Save("position", position);
     }
 
     public void Summon(Follower follower, GameObject slot, Vector2 position) {
@@ -107,5 +125,10 @@ public class GameManager : MonoBehaviour
         slotSprite.sprite = follower.sprite;
         slotAnimator.runtimeAnimatorController = follower.anim;
         slot.transform.position = position;
+    }
+
+    void OnApplicationQuit() {
+        conditions["NewRun"] = true;
+        // GameSave();
     }
 }

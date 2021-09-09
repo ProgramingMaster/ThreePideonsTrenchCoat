@@ -31,7 +31,7 @@ public class ConversationController : MonoBehaviour
         }
         conversationStarted = false;
         conversation = nextConversation;
-        name.text = conversation.name;
+        //name.text = conversation.name;
         AdvanceLine();
     }
 
@@ -40,11 +40,12 @@ public class ConversationController : MonoBehaviour
             Debug.Log("There is no conversation!");
         }
         conversation = NewConversation;
-        name.text = conversation.name; //why does every bug come back to this?
+        //name.text = conversation.name; //why does every bug come back to this? // lol, no more bugs in *this* line!
         AdvanceLine();
     }
 
     public void AdvanceLine() {
+        Debug.Log("LimeAdvanced!");
         textDisplay.text = "";
         dialoguebox.gameObject.SetActive(true);
         if (conversation == null) {
@@ -54,6 +55,7 @@ public class ConversationController : MonoBehaviour
 
         // Debug.Log(conversation);
         // Debug.Log(activeLineIndex);
+        Debug.Log(conversation);
         if (activeLineIndex < conversation.lines.Length) {
             DisplayLine();
         }
@@ -96,13 +98,13 @@ public class ConversationController : MonoBehaviour
         dialoguebox.gameObject.SetActive(false);
     }
 
-    private void EndConversation() {
+    public void EndConversation() {
         StartCoroutine("over");
     }
 
     private void DisplayLine() {
         Line line = conversation.lines[activeLineIndex];
-
+        name.text = conversation.lines[activeLineIndex].name;    
         StartCoroutine(Type(line));
         continueButton.SetActive(false);
         activeLineIndex ++;
@@ -129,12 +131,19 @@ public class ConversationController : MonoBehaviour
     public void AdvanceConversation() {
         if (conversation.question != null) {
             questionEvent.Invoke(conversation.question);
+            name.text = conversation.question.name;
             ToQuestion();
         }
         else if (conversation.nextConversation != null)
             ChangeConversation(conversation.nextConversation);
         else
             EndConversation();
+    }
+
+    public void QuestionXQuestion(Question question) {
+        Debug.Log(question);
+        questionEvent.Invoke(question);
+        name.text = question.name;
     }
 
     // public void _AdvanceConversation() {

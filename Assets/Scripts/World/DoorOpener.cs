@@ -7,6 +7,7 @@ public class DoorOpener : MonoBehaviour
 {   
     private bool atDoor;
     public string scene;
+    public Vector2 newPos;
     //public SaveSystem Save;
 
     void Start() {
@@ -15,11 +16,15 @@ public class DoorOpener : MonoBehaviour
 
     // Start is called before the first frame update
     private void OnTriggerEnter2D (Collider2D collider) {
+        Debug.Log("At Door");
         atDoor = true;
     }
     
     private void OnTriggerExit2D (Collider2D collider) {
-        atDoor = false;
+        if (collider.isTrigger == true && collider.GetType() != typeof(BoxCollider2D)) {
+            Debug.Log("Left Door");
+            atDoor = false;
+        }  
     }
 
 
@@ -27,7 +32,10 @@ public class DoorOpener : MonoBehaviour
     void Update()
     {
         if (atDoor) {
+            //Debug.Log("AT door");
             if (Input.GetKeyDown("g")) {
+                Debug.Log("g");
+                GameManager.Instance.position = new Vector2(newPos.x, newPos.y);
                 GameManager.Instance.GameSave();
                 SceneManager.LoadScene(scene);
             }

@@ -7,8 +7,11 @@ using TMPro;
 public class ScheduleManager : MonoBehaviour
 {
     public bool StartInScene;
-    public TMP_Text sayText;
+    public GameObject sayImage;
+    private TMP_Text sayText;
     public Animator anim;
+
+    public string actionType;
 
     private Schedule schedule;
     private Action[] actions;
@@ -20,6 +23,8 @@ public class ScheduleManager : MonoBehaviour
     float endPos;
     float step;
     int duration;
+    int numberOfLettersToAdd;
+    SpriteRenderer renderer;
 
     [@System.NonSerialized]
     public Conversation conversation;
@@ -27,19 +32,27 @@ public class ScheduleManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        numberOfLettersToAdd = 0;
         //transform = GetComponent<Transform>();
         //walking = false;
         i = 0;
         TheBadPlace = new Vector2(-1000, -1000);
         inScene = StartInScene;
         //StartAction();
+        sayText = sayImage.GetComponentInChildren<TMP_Text>();
+        sayImage.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
-    {
-        if (actions[i].anim != null) {
-            anim.Play(actions[i].anim);
+    { // actions = schedule
+                //Debug.Log("Duration" + duration);
+        //Debug.Log(actions);
+        if (i < actions.Length) {
+            //Debug.Log(i);
+            if (actions[i].anim != null) {
+                anim.Play(actions[i].anim);
+            }
         }
     }
 
@@ -54,6 +67,7 @@ public class ScheduleManager : MonoBehaviour
     // }
 
     public void StartAction() {
+        renderer = GetComponent<SpriteRenderer>();
         schedule = GetComponent<CharacterManager>().schedule;
         Debug.Log("StartAction: " + schedule.schedule);
         actions = schedule.schedule;
@@ -65,9 +79,16 @@ public class ScheduleManager : MonoBehaviour
         int startTime;
 
         for (i = 0; i < actions.Length; i++) {
+            Debug.Log("Iteration: " + i);
+            actionType = actions[i].type;
+            renderer.sortingLayerName = "Layer" + actions[i].layer;
+
             if (actions[i].scene == SceneManager.GetActiveScene().name) {
                 inScene = true;
             }
+
+            if (inScene) 
+                transform.position = new Vector2(actions[i].startPosition.x, actions[i].startPosition.y);
 
             // Makes a single number for the start time
             startTime = (actions[i].timeslot.startTime.hour * 60) + actions[i].timeslot.startTime.minute;
@@ -77,8 +98,8 @@ public class ScheduleManager : MonoBehaviour
                 Debug.Log("Welp");
                 // Then if the current time is still within the duration that the action was suppose to start
                 if (time < startTime + actions[i].timeslot.duration ) {
-                    // Set there current position and the new duration (how long it should take them to finish the action now)
-
+                    Debug.Log("Yay!");
+                    // Set their current position and the new duration (how long it should take them to finish the action now)
                     if (actions[i].type == "WalkX") {
                         // startPos = actions[i].startPosition.x;
                         // endPos = actions[i].endPosition.x;
@@ -99,6 +120,17 @@ public class ScheduleManager : MonoBehaviour
                             float step = (Mathf.Abs(actions[i].endPosition.y - actions[i].startPosition.y) / actions[i].timeslot.duration);
                             transform.position = new Vector3(transform.position.x, (actions[i].startPosition.y + step * (time - startTime)), transform.position.z);
                         }
+                    } else if (actions[i].type == "Say") {
+                        duration = (startTime + actions[i].timeslot.duration) - time;
+                        //Debug.Log("Duration: " + ((startTime + actions[i].timeslot.duration) - time) );
+                        char[] sayArray = actions[i].say.ToCharArray();
+                        float typingSpeed = (float) ((float) actions[i].timeslot.duration/ (float) sayArray.Length);
+                        numberOfLettersToAdd = (int) ((actions[i].timeslot.duration - duration) / typingSpeed);
+                        Debug.Log("Info: " + i + " " + typingSpeed + " " + duration + " " + numberOfLettersToAdd + " " + actions[i].timeslot.duration + " " + (duration/sayArray.Length) + " " + time + " " + startTime);
+                        sayText.text = actions[i].say.Substring(0, numberOfLettersToAdd); 
+                    }
+                    else {
+                        duration = (startTime + actions[i].timeslot.duration) - time;
                     }
                 }
                 else {
@@ -107,7 +139,8 @@ public class ScheduleManager : MonoBehaviour
                 }
             }
             // If you /are/ on time then set the duration as normal
-            else if  (time == startTime) {
+            else {
+                Debug.Log("time == starttime");
                 duration = actions[i].timeslot.duration;
                 if (inScene)
                     transform.position = new Vector2(actions[i].startPosition.x, actions[i].startPosition.y);
@@ -119,7 +152,9 @@ public class ScheduleManager : MonoBehaviour
                 inScene = false;
             }
 
+            Debug.Log("153: " + actions[i].layer );
             conversation = actions[i].startDialogue;
+            Debug.Log("155: " + conversation);
 
             string type = actions[i].type;
             if (type == "Idle") {
@@ -133,17 +168,24 @@ public class ScheduleManager : MonoBehaviour
                 yield return StartCoroutine(Say());
             } 
         }
+        if (i >= actions.Length) {
+            Debug.Log("End");
+        }
     }
 
     IEnumerator Say() {
-        char[] sayArray = actions[i].say.ToCharArray();
-        float typingSpeed = (float)( (duration * 0.9) / sayArray.Length);
+        sayImage.SetActive(true);
+        char[] sayArray = (actions[i].say.Substring((numberOfLettersToAdd), (actions[i].say.Length - (numberOfLettersToAdd)))).ToCharArray();
+        //Debug.Log((actions[i].say.Substring((numberOfLettersToAdd -1), actions[i].say.Length)));
+        float typingSpeed = (float)( (duration) / sayArray.Length);
         Debug.Log("typing speed: " + typingSpeed);
         foreach(char letter in sayArray) {
             sayText.text += letter;
             yield return new WaitForSecondsRealtime(typingSpeed);
         }
-        yield return new WaitForSecondsRealtime((float)(duration * 0.1));
+        // yield return new WaitForSecondsRealtime((float)(duration * 0.1));
+        sayImage.SetActive(false);
+        numberOfLettersToAdd = 0;
     }
 
     //Need to make function to determine walk speed based on duration

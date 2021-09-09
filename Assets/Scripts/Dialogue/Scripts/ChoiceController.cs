@@ -7,10 +7,18 @@ using System;
 [System.Serializable]
 public class ConversationChangeEvent : UnityEvent<Conversation> {}
 
+[System.Serializable]
+public class QuestionChangeEvent : UnityEvent<Question> {}
+
+[System.Serializable]
+public class ConversationEndEvent : UnityEvent {}
+
 public class ChoiceController : MonoBehaviour
 {
     public Choice choice;
     public ConversationChangeEvent conversationChangeEvent;
+    public QuestionChangeEvent questionChangeEvent;
+    public ConversationEndEvent conversationEndEvent;
     public SummonFollowers Summon;
     public ToTrenchcoat toTrenchcoat;
     public GameObject higherSlot;
@@ -37,15 +45,30 @@ public class ChoiceController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (conversationEndEvent == null)
+            conversationEndEvent = new ConversationEndEvent();
+
         if (conversationChangeEvent == null)
             conversationChangeEvent = new ConversationChangeEvent();
 
+        if (questionChangeEvent == null)
+            questionChangeEvent = new QuestionChangeEvent();
+
+        // Found it, this is the text!
         GetComponent<Text>().text = choice.text;
     }
 
     public void MakeChoice() {
         Debug.Log("Make Choice: " + choice.conversation);
-        conversationChangeEvent.Invoke(choice.conversation);
+        if (choice.conversation == null && choice.question == null) {
+            conversationEndEvent.Invoke();
+        }
+        if (choice.conversation == null && choice.question != null) {
+            Debug.Log("Coming from here " + choice.question);
+            questionChangeEvent.Invoke(choice.question);
+        } else {
+            conversationChangeEvent.Invoke(choice.conversation);
+        }
         if (choice.subSchedule != null) {
             GameObject character = GameObject.Find("Characters/" + choice.characterToChange);
             //Debug.Log(character);

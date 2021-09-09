@@ -20,4 +20,37 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/InsideTheater.unity
     guid: e2720f276ca8448c493be42e116bab92
+  - enabled: 1
+    path: Assets/Scenes/Pizza.unity
+    guid: 8bbfd70a681764f93a128b9ff746c017
+  - enabled: 1
+    path: Assets/Scenes/PetStore.unity
+    guid: f2bbfc3a40a474041b9c43997ac0363f
+  - enabled: 1
+    path: Assets/Scenes/NewMain.unity
+    guid: 767a6e13bcfdd49de9305528f5e8e05e
+  - enabled: 1
+    path: Assets/Scenes/Alley.unity
+    guid: 5e0d63498904c4631b22523ca2c3d593
+  - enabled: 1
+    path: Assets/Scenes/Apartment1.unity
+    guid: d7923bbc6d2e948948810fc407cd8945
+  - enabled: 1
+    path: Assets/Scenes/Apartmenthallway.unity
+    guid: 30a8206b592f64804a1cf83b1173af4f
+  - enabled: 1
+    path: Assets/Scenes/WitchHouse.unity
+    guid: c6195f550a56d4b59a56091d0f948d7c
+  - enabled: 1
+    path: Assets/Scenes/GoldShop.unity
+    guid: b24f24006b4b245e6876f8bb6e3d863c
+  - enabled: 1
+    path: Assets/Scenes/MuseumEntrance.unity
+    guid: 66d80db3f6d7f4d2f9adb2ffbc631d36
+  - enabled: 1
+    path: Assets/Scenes/MuseumRoom1.unity
+    guid: fbbae5840364c428a8c4858bd0962081
+  - enabled: 1
+    path: Assets/Scenes/NewBakery.unity
+    guid: 7ca5345947cd4415eb44108f795e5208
   m_configObjects: {}

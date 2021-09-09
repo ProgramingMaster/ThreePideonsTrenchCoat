@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0afcc967b763a4be9abbe223b606b903, type: 3}
+  m_Name: Test2
+  m_EditorClassIdentifier: 
+  text: Have any Question?
+  name: Y/N
+  choices:
+  - text: What?
+    conversation: {fileID: 0}
+    question: {fileID: 11400000, guid: f49c44a82d05c47778f3d6d3845d1f3d, type: 2}
+    subSchedule: {fileID: 0}
+    characterToChange: 
+    showConditions: []
+    effectCondition: 
+    makeFollowers: []
+  - text: Why
+    conversation: {fileID: 11400000, guid: a0dc09d64617f409b86aaa498a953233, type: 2}
+    question: {fileID: 0}
+    subSchedule: {fileID: 0}
+    characterToChange: 
+    showConditions: []
+    effectCondition: 
+    makeFollowers: []
+  - text: I wonder
+    conversation: {fileID: 0}
+    question: {fileID: 0}
+    subSchedule: {fileID: 0}
+    characterToChange: 
+    showConditions: []
+    effectCondition: 
+    makeFollowers: []

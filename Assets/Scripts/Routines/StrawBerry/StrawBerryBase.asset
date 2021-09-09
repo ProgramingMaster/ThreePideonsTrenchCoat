@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3683ac42c9965459cb1826e4d13f5096, type: 3}
+  m_Name: StrawBerryBase
+  m_EditorClassIdentifier: 
+  schedule:
+  - timeslot:
+      startTime:
+        hour: 2
+        minute: 0
+      duration: 59
+    type: Idle
+    startPosition: {x: -0.5, y: -0.25}
+    endPosition: {x: -0.5, y: -0.25}
+    anim: StrawberryIdle
+    startDialogue: {fileID: 11400000, guid: 11468dd7f77bc4f2e817879f1678685d, type: 2}
+    say: 
+    scene: NewBakery
+    layer: 4
+  - timeslot:
+      startTime:
+        hour: 2
+        minute: 59
+      duration: 60
+    type: Idle
+    startPosition: {x: -0.5, y: -0.25}
+    endPosition: {x: -0.5, y: -0.25}
+    anim: StrawberryIdle
+    startDialogue: {fileID: 0}
+    say: 
+    scene: NewBakery
+    layer: 3

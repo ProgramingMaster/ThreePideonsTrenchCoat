@@ -23,6 +23,7 @@ public struct Action {
     public Conversation startDialogue;
     public string say;
     public string scene;
+    public int layer;
 }
 
 [CreateAssetMenu(fileName = "New Schedule", menuName = "Schedule")]

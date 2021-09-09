@@ -8,11 +8,14 @@ public class CharacterManager : MonoBehaviour
     public string name;
     private ScheduleManager scheduleManager;
 
-    void Start() {
+    public void GameLoaded() {
+        Debug.Log("Oh, is the GameLoaded? Yes!");
         scheduleManager = GetComponent<ScheduleManager>();
         if (GameManager.Instance.schedules.ContainsKey(name)) {
+            Debug.Log("This");
             schedule = GameManager.Instance.schedules[name];
         } else {
+            Debug.Log("That");
             GameManager.Instance.schedules[name] = schedule;            
         }
         Debug.Log("CharacterManager!: " + GameManager.Instance.schedules[name]);

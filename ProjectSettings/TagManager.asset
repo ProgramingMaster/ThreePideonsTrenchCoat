@@ -10,6 +10,10 @@ TagManager:
   - Layer2
   - Layer3
   - Layer4
+  - AboveGround
+  - BelowGround
+  - WallLine
+  - IgnoreCircleCollider
   layers:
   - Default
   - TransparentFX
@@ -44,6 +48,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Sky
+    uniqueID: 2413699463
+    locked: 0
   - name: Background
     uniqueID: 1849132177
     locked: 0

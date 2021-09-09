@@ -18,6 +18,10 @@ public class Clock : MonoBehaviour {
     }
 
     void Start() {
+        
+    }
+
+    public void TimeLoaded() {
         minute = GameManager.Instance.gameTimeMinute;
         hour = GameManager.Instance.gameTimeHour;
     }

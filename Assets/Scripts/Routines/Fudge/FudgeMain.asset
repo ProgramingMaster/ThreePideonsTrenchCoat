@@ -17,35 +17,38 @@ MonoBehaviour:
       startTime:
         hour: 2
         minute: 0
-      duration: 10
+      duration: 5
     type: WalkX
     startPosition: {x: 23, y: -4}
     endPosition: {x: 15, y: -4}
-    anim: {fileID: 0}
+    anim: StarberryWalking
     startDialogue: {fileID: 0}
     say: 
     scene: NewMain
+    layer: 3
+  - timeslot:
+      startTime:
+        hour: 2
+        minute: 5
+      duration: 5
+    type: Say
+    startPosition: {x: 15, y: -4}
+    endPosition: {x: 15, y: -4}
+    anim: StarberryWalking
+    startDialogue: {fileID: 0}
+    say: 12345
+    scene: NewMain
+    layer: 3
   - timeslot:
       startTime:
         hour: 2
         minute: 10
-      duration: 10
-    type: Say
-    startPosition: {x: -5, y: -3}
-    endPosition: {x: -5, y: 8}
-    anim: {fileID: 0}
-    startDialogue: {fileID: 0}
-    say: 1234567890
-    scene: NewMain
-  - timeslot:
-      startTime:
-        hour: 2
-        minute: 20
-      duration: 30
+      duration: 15
     type: Idle
     startPosition: {x: 15, y: -4}
-    endPosition: {x: -5, y: 8}
-    anim: {fileID: 0}
+    endPosition: {x: 15, y: -4}
+    anim: StarberryWalking
     startDialogue: {fileID: 0}
     say: 
     scene: NewMain
+    layer: 3

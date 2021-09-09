@@ -17,6 +17,7 @@ public struct Choice {
     [TextArea(2, 5)]
     public string text;
     public Conversation conversation;
+    public Question question;
     public Schedule subSchedule;
     public string characterToChange;
     public showCondition[] showConditions;
@@ -29,6 +30,7 @@ public class Question : ScriptableObject
 {
     [TextArea(2, 5)]
     public string text;
+    public string name;
     public Choice[] choices;
 }
 
